@@ -10,6 +10,8 @@
 
 Khi làm UI, đọc `docs/design-system.md` trước khi chọn màu, bố cục, component hoặc thêm thư viện UI.
 Phân biệt token tạm/đề xuất với thiết kế đã duyệt; cập nhật tài liệu khi mẫu được chốt.
+Khi đổi metadata, URL, schema hoặc cấu hình phát hành, đọc `docs/seo-aio.md`. Preview mặc định noindex;
+không bật `SEO_ALLOW_INDEXING` trên bản xem thử và không bịa giá/review/ngày đăng để điền schema.
 
 Tài liệu là bản ghi tại thời điểm cập nhật; kiểm tra code/dịch vụ thực tế khi cần.
 Nếu code khác yêu cầu, ghi nhận khoảng cách, không tự coi hành vi hiện tại là yêu cầu đúng.

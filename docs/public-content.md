@@ -49,7 +49,7 @@ node scripts/check-ui.mjs
 
 Script đọc các trang local, so sánh tiêu đề nguồn, kiểm tra search/empty/pagination/404 và sự tồn tại của ảnh bìa.
 Không kiểm tra đăng nhập hoặc ghi dữ liệu. Có thể đổi URL bằng biến `UI_CHECK_URL`.
-Chỉ chạy một server Next.js cho cùng `.next`; dừng server dev trước khi build/start bản production.
+Dev và production hiện tách cache `.next-dev`/`.next`; mỗi cổng chỉ chạy một server.
 
 ## Cần làm tiếp khi chuyển đầy đủ
 

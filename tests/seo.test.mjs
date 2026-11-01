@@ -41,6 +41,8 @@ test('pagination has its own canonical, search is noindex even in production',()
   const search=module.catalogMetadata({title:'Sản phẩm',path:'/san-pham',count:40,query:'R32',page:'2'});
   assert.equal(search.robots.index,false);
   assert.equal(search.alternates.canonical,'https://tonphuc.com/san-pham');
+  const empty=module.catalogMetadata({title:'Nhớt lạnh',path:'/nhot-lanh',count:0});
+  assert.equal(empty.robots.index,false);
 });
 
 test('JSON-LD cannot terminate its script element and preserves source text',()=>{

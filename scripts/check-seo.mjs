@@ -15,6 +15,7 @@ const cases=[
   {path:'/'+article.slug,canonical:'/'+article.slug,type:'Article'},
   {path:'/san-pham?page=2',canonical:'/san-pham?page=2'},
   {path:'/san-pham?q=R32',canonical:'/san-pham',noindex:true},
+  {path:'/nhot-lanh',canonical:'/nhot-lanh',noindex:true},
 ];
 for(const item of cases) {
   const response=await fetch(origin+item.path,{signal:AbortSignal.timeout(45000)});
@@ -39,10 +40,15 @@ for(const item of cases) {
     assert.ok(schemas.some(value=>value['@type']==='BreadcrumbList'),item.path+' breadcrumbs');
     if(item.type==='Product') {
       assert.equal(data.name,product.title);
+      assert.equal(data.url,expected);
+      if(product.image)assert.equal($('meta[property="og:image"]').attr('content'),new URL(product.image,canonicalOrigin).href);
       assert.equal(data.offers,undefined,'Do not invent a product price');
       assert.equal(data.aggregateRating,undefined,'Do not invent reviews');
     }
-    if(item.type==='Article')assert.equal(data.datePublished,undefined,'Do not invent source publication dates');
+    if(item.type==='Article') {
+      assert.equal(data.datePublished,undefined,'Do not invent source publication dates');
+      assert.equal(data.mainEntityOfPage['@id'],expected);
+    }
   }
 }
 const admin=load(await(await fetch(origin+'/admin')).text());
@@ -57,6 +63,7 @@ const xml=load(await sitemapResponse.text(),{xmlMode:true});
 const urls=xml('loc').toArray().map(el=>xml(el).text());
 assert.equal(urls.length,new Set(urls).size);
 assert.ok(urls.every(url=>url.startsWith(canonicalOrigin+'/')&&!url.includes('/admin')&&!url.includes('?')));
+assert.ok(!urls.includes(canonicalOrigin+'/nhot-lanh'),'Empty category must not be listed');
 const image=await fetch(origin+'/share-image');
 assert.equal(image.status,200,'Social card endpoint');
 assert.match(image.headers.get('content-type')||'',/image\/png/);

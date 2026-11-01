@@ -16,6 +16,7 @@ Bắt đầu từ [AGENTS.md](AGENTS.md), rồi đọc:
 | [Sản phẩm và quyết định](docs/product.md) | Mục tiêu, phạm vi đã chốt, câu hỏi còn mở, điều kiện hoàn thành |
 | [Kiến trúc](docs/architecture.md) | Code, routes, dữ liệu, auth/RLS và khoảng trống |
 | [Quy chuẩn UI](docs/design-system.md) | Hướng thị giác, token, mẫu trang, component, responsive và quy trình duyệt |
+| [SEO và AIO](docs/seo-aio.md) | Metadata, schema, sitemap/robots, noindex preview và cách mở index khi phát hành |
 | [Nội dung của bản UI](docs/public-content.md) | Nguồn JSON/ảnh công khai, phạm vi đã lấy, giới hạn và cách kiểm tra |
 | [Trạng thái](docs/status.md) | Đã làm, đã kiểm tra, chưa làm, việc tiếp theo |
 | [Kế hoạch UI và chuyển đổi](docs/redesign-plan.md) | Mẫu trang, hướng thiết kế đề xuất, thứ tự chuyển đổi |
@@ -76,7 +77,8 @@ npm run build
 
 Chọn kiểm tra theo phần thay đổi. Script Supabase cần mạng, thử ghi/upload bằng khách và mong đợi bị từ chối;
 đọc giới hạn trong tài liệu setup trước khi chạy. Chưa có unit/e2e test hoặc lint hoàn chỉnh.
-`check-ui.mjs` cần server local đang chạy. Dừng server dev trước khi chạy build, tránh hai tiến trình ghi chung `.next`.
+`check-ui.mjs` cần server local đang chạy. Dev dùng `.next-dev`, build/start production dùng `.next` để tách cache.
+Mỗi cổng chỉ chạy một server; khi kiểm tra production song song với dev, dùng cổng khác như 3100 và đặt `UI_CHECK_URL` tương ứng.
 
 ## Quy trình lên sóng
 

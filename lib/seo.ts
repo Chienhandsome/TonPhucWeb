@@ -62,6 +62,6 @@ export function catalogMetadata({title, path, count, query, page}: {title: strin
     title: q ? `Tìm sản phẩm: ${q}` : current > 1 ? `${title} — Trang ${current}` : title,
     description: q ? `Tìm kiếm “${q}” trong danh mục sản phẩm Tôn Phúc.` : `${title} tại Tôn Phúc. Xem hình ảnh, thông tin sản phẩm và liên hệ tư vấn qua hotline 0903.863.797.${current > 1 ? ` Trang ${current}.` : ''}`,
     path: current > 1 && !q ? `${path}?page=${current}` : path,
-    noindex: Boolean(q),
+    noindex: Boolean(q) || count === 0,
   });
 }

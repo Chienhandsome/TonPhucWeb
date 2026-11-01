@@ -23,6 +23,10 @@ Phiên bản cụ thể xem lockfile. Alias `@/*` trỏ về gốc repo; TypeScr
 | `app/admin/page.tsx` | Đăng nhập, CRUD bài, thêm chuyên mục và upload ảnh; đã chỉnh khung hiển thị |
 | `app/error.tsx`, `app/not-found.tsx` | Trạng thái lỗi và 404 |
 | `app/sitemap.ts` | Sitemap XML tại /sitemap.xml: trang công khai, catalog, bài xuất bản và chuyên mục; liên kết ở footer |
+| `lib/seo.ts`, `lib/structured-data.ts` | Metadata, cờ index, canonical, schema doanh nghiệp/sản phẩm/bài/breadcrumb |
+| `app/robots.ts`, `app/admin/layout.tsx` | Crawl rules và noindex/nofollow riêng cho admin |
+| `app/share-image/route.ts`, `lib/share-image.tsx` | Ảnh chia sẻ thương hiệu 1200×630, không cần gọi domain cũ |
+| `components/JsonLd.tsx`, `lib/json-ld.mjs` | Serialize/escape JSON-LD và render script dữ liệu |
 | `components/` | Header/footer client, card, catalog server, nội dung block, liên hệ và các phần dùng chung |
 | `messages/vi.json`, `i18n/request.ts` | Giao diện công khai tiếng Việt; locale cố định vi, chưa có route tiếng Anh |
 | `lib/catalog.ts` | Catalog nguồn, resolver danh mục, ghép bài database và bài nguồn |
@@ -80,12 +84,15 @@ UI admin chỉ thêm chuyên mục, chưa sửa/xóa dù RLS hỗ trợ.
 - Chuyển đủ website: nhiều trang danh mục/phân trang, mô tả và ảnh chưa đối chiếu đầy đủ.
 - Bảng sản phẩm, bản dịch, danh mục cha/con trong database và quản trị catalog/banner/liên hệ.
 - Ảnh gallery đầy đủ, editor rich text, xử lý lỗi/session admin hoàn chỉnh.
-- Redirect đầy đủ, robots, metadata gốc/ngày đăng của toàn bộ nội dung; sitemap đã có cho các nguồn dữ liệu hiện tại.
+- Redirect đầy đủ và metadata gốc/ngày đăng của toàn bộ nội dung; metadata kỹ thuật, robots và sitemap lọc trang rỗng đã có.
 - Bản dịch tiếng Anh và route /en; hiện chỉ chuẩn bị giao diện tiếng Việt bằng next-intl.
 - Kiểm thử bằng mật khẩu admin thực, bộ e2e tự động và cấu hình lint hoàn chỉnh.
 
 ## Vận hành local
 
-Chỉ chạy một server Next cho cùng thư mục build. Dừng dev trước khi build/start production,
-tránh tiến trình cũ ghi đè .next gây lỗi module. Bản đang bàn giao chạy production local trên cổng 3000.
-Nếu cần sửa code, dừng server production rồi chạy npm run dev. Không chạy build chồng với dev.
+SEO mặc định noindex cả bản build xem trước. Chỉ mở khi có cờ production rõ ràng trên domain thật;
+xem [SEO/AIO](seo-aio.md) trước khi đổi cấu hình phát hành. Robots cho phép crawl để crawler đọc noindex.
+
+Dev dùng `.next-dev`, build/start production dùng `.next` theo phase trong next.config.js;
+hai output được tách để tránh lỗi ghi đè module. Vẫn chỉ chạy một server trên mỗi cổng.
+Bản xem trước chạy dev trên cổng 3000. Có thể kiểm tra production song song ở cổng khác như 3100.

@@ -45,6 +45,19 @@ Footer đã có liên kết sitemap XML và bản đồ Google Maps từ mã nh�
 Đã thêm hai nút nổi Gọi điện/Zalo trên trang công khai, ẩn ở admin; kiểm tra link/kích thước và mobile 360px.
 Animation hero/scroll reveal mới ở mức đề xuất trong design-system.md, chưa áp dụng cho trang chủ.
 
+## SEO/AIO kỹ thuật đã hoàn thành
+
+- Metadata riêng, canonical phân trang, Open Graph/Twitter card và ảnh thương hiệu 1200×630.
+- Robots/noindex: local/preview mặc định noindex; admin noindex/nofollow; search và danh mục rỗng noindex.
+- Sitemap bỏ URL rỗng, query và admin; dùng cùng origin với canonical.
+- JSON-LD LocalBusiness/WebSite/Product/Article/BreadcrumbList theo dữ liệu hiện có, không bịa giá/review/ngày đăng.
+- Cấu hình tùy chọn mã xác minh Google/Bing; chưa xác minh hoặc gửi sitemap ra ngoài.
+- 5 unit checks thành công; production build thành công; integration vượt 10 trang SEO, robots/sitemap/ảnh,
+  và 64 route UI trên cổng kiểm tra 3100. Đã xem ảnh chia sẻ thực tế.
+- Tách output dev `.next-dev` và production `.next` để sửa lỗi hai server ghi đè cache.
+- Bản xem trước vẫn ở cổng 3000, chưa mở index hoặc deploy. Chi tiết [SEO/AIO](seo-aio.md).
+- Chưa có xác thực Rich Results từ ngoài hoặc số đo Core Web Vitals trên domain thật; nội dung gốc/migration vẫn còn thiếu.
+
 Catalog local chưa sửa được từ /admin. Đọc [nguồn dữ liệu UI](public-content.md) trước khi tiếp tục.
 
 ## Việc tiếp theo
@@ -53,7 +66,7 @@ Catalog local chưa sửa được từ /admin. Đọc [nguồn dữ liệu UI](
 2. Khi có admin web cũ, kiểm tra khả năng liệt kê/xuất nội dung và ảnh; đối chiếu snapshot public với toàn bộ sản phẩm/bài/danh mục, ngày đăng/metadata. Chưa giả định tài khoản admin cho phép xuất database. Xác minh thông tin liên hệ.
 3. Chốt schema sản phẩm/danh mục nhiều cấp/bản dịch và cách quản trị, rồi mới chuyển dữ liệu hàng loạt.
 4. Hoàn thiện quản trị, kiểm thử CRUD/upload bằng tài khoản thực.
-5. Chốt URL mapping/redirect, sitemap/SEO và kiểm thử phát hành.
+5. Chốt URL mapping/redirect và metadata/ngày đăng gốc; xác thực schema, hiệu năng và Search Console/Bing trên bản phát hành.
 6. Preview được duyệt mới chuẩn bị chuyển DNS theo kế hoạch.
 
 ## Quy tắc cập nhật
