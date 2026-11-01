@@ -84,6 +84,18 @@ Trình tự section và lựa chọn sản phẩm tiêu biểu được điều 
 
 ## Mobile và khả năng sử dụng
 
+Đã có hai nút liên hệ nổi Gọi điện/Zalo, cố định góc phải dưới trên trang công khai; ẩn ở admin.
+Desktop 54px, mobile 48px, có nhãn trợ năng, tooltip khi hover/focus và khoảng cách safe-area.
+Không có rung/nhấp nháy tự động; hover nhấc nhẹ và tắt chuyển động khi người dùng chọn giảm chuyển động.
+
+### Animation trang chủ — mới đề xuất, chưa triển khai
+
+- Hero: chữ/CTA xuất hiện nhẹ từ dưới lên khoảng 12px trong 400–500ms, chỉ một lần khi mở trang.
+- Các section: fade/slide nhẹ khi vào viewport; card xuất hiện lần lượt lệch khoảng 50–70ms, chỉ một lần.
+- Giữ hover hiện có trên ảnh/card; có thể tinh chỉnh shadow và mũi tên, không cần chuyển động liên tục.
+- Dùng CSS và IntersectionObserver nếu triển khai; giữ nội dung truy cập được khi JS không chạy,
+  hỗ trợ prefers-reduced-motion và không làm chậm ảnh hero. Chưa cần cài thư viện animation.
+
 - Thiết kế từ màn hình hẹp, kiểm tra ít nhất tại 360, 768 và 1440px; đây là kích thước QA mẫu, không ép số cột cố định.
 - Không để toàn trang cuộn ngang; bảng thông số rộng có vùng cuộn riêng và dấu hiệu dễ nhận biết.
 - Menu mobile mở/đóng được bằng bàn phím, có trạng thái rõ và không giữ focus trong vùng đã ẩn.

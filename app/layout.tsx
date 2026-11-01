@@ -3,6 +3,7 @@ import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import './globals.css';
 import SiteHeader, {SiteFooter} from '@/components/SiteHeader';
+import FloatingContact from '@/components/FloatingContact';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://tonphuc.com'),
@@ -12,5 +13,5 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({children}: {children: React.ReactNode}) {
   const messages = await getMessages();
-  return <html lang="vi"><body><NextIntlClientProvider messages={messages}><SiteHeader/><main id="main-content">{children}</main><SiteFooter/></NextIntlClientProvider></body></html>;
+  return <html lang="vi"><body><NextIntlClientProvider messages={messages}><SiteHeader/><main id="main-content">{children}</main><SiteFooter/><FloatingContact/></NextIntlClientProvider></body></html>;
 }
