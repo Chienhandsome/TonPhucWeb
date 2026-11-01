@@ -1,7 +1,8 @@
 import {getTranslations} from 'next-intl/server';
 import {getArticles} from '@/lib/catalog';
 import PostCard from '@/components/PostCard';
-export const metadata={title:'Tin tức & kiến thức',alternates:{canonical:'/tin-tuc'}};
+import {pageMetadata} from '@/lib/seo';
+export const metadata=pageMetadata({title:'Tin tức & kiến thức',description:'Tin tức và kiến thức về gas lạnh, vật tư điện lạnh tại Tôn Phúc. Đọc thông tin về các loại gas và ứng dụng trong ngành lạnh.',path:'/tin-tuc'});
 export const dynamic = 'force-dynamic';
 export default async function NewsPage() {
   const [t,articles]=await Promise.all([getTranslations('News'),getArticles()]);

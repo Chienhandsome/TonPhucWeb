@@ -1,5 +1,6 @@
 import { getSupabase } from "./supabase";
 import { SEED_CATEGORIES, SEED_POSTS, type SeedPost } from "./seed";
+import {cache} from 'react';
 
 export type Post = {
   id: string;
@@ -34,7 +35,7 @@ function seedToPost(p: SeedPost, index: number): Post {
 }
 
 /** Lấy bài đã xuất bản. Chưa cấu hình Supabase thì trả về seed mẫu. */
-export async function getPublishedPosts(): Promise<Post[]> {
+export const getPublishedPosts = cache(async (): Promise<Post[]> => {
   const sb = getSupabase();
   if (!sb) return SEED_POSTS.map(seedToPost);
   const { data, error } = await sb
@@ -49,18 +50,18 @@ export async function getPublishedPosts(): Promise<Post[]> {
     category_slug: row.categories?.slug ?? null,
     category_name: row.categories?.name ?? null,
   }));
-}
+});
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   const posts = await getPublishedPosts();
   return posts.find((p) => p.slug === slug) ?? null;
 }
 
-export async function getCategories(): Promise<Category[]> {
+export const getCategories = cache(async (): Promise<Category[]> => {
   const sb = getSupabase();
   if (!sb) return SEED_CATEGORIES.map((c) => ({ id: c.slug, ...c }));
   const { data, error } = await sb.from("categories").select("*").order("name");
   if (error) throw new Error(`Không thể tải chuyên mục từ Supabase: ${error.message}`);
   if (!data) return [];
   return data as Category[];
-}
+});

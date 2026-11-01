@@ -4,14 +4,19 @@ import {getMessages} from 'next-intl/server';
 import './globals.css';
 import SiteHeader, {SiteFooter} from '@/components/SiteHeader';
 import FloatingContact from '@/components/FloatingContact';
+import JsonLd from '@/components/JsonLd';
+import {businessData} from '@/lib/structured-data';
+import {DEFAULT_DESCRIPTION, DEFAULT_TITLE, pageMetadata, SITE_URL} from '@/lib/seo';
+import siteInfo from '@/data/site-info.json';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://tonphuc.com'),
-  title: {default:'Gas Lạnh Tôn Phúc — Vật tư điện lạnh TP.HCM',template:'%s | Tôn Phúc'},
-  description:'Gas lạnh, ống đồng, block máy nén và vật tư điện lạnh Tôn Phúc. 25A Tân Kỳ Tân Quý, TP.HCM. Hotline 0903.863.797.'
+  ...pageMetadata({title:DEFAULT_TITLE,description:DEFAULT_DESCRIPTION,path:'/'}),
+  metadataBase: new URL(SITE_URL),
+  title: {default:DEFAULT_TITLE,template:'%s | Tôn Phúc'},
+  icons: {icon:siteInfo.brand.logo},
 };
 
 export default async function RootLayout({children}: {children: React.ReactNode}) {
   const messages = await getMessages();
-  return <html lang="vi"><body><NextIntlClientProvider messages={messages}><SiteHeader/><main id="main-content">{children}</main><SiteFooter/><FloatingContact/></NextIntlClientProvider></body></html>;
+  return <html lang="vi"><body><JsonLd data={businessData()}/><NextIntlClientProvider messages={messages}><SiteHeader/><main id="main-content">{children}</main><SiteFooter/><FloatingContact/></NextIntlClientProvider></body></html>;
 }

@@ -1,6 +1,7 @@
 import type {MetadataRoute} from 'next';
 import {categories, getArticles, products} from '@/lib/catalog';
 import {getCategories} from '@/lib/posts';
+import {absoluteUrl} from '@/lib/seo';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,5 +17,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...articles.map(article => article.href || `/${article.slug}`),
     ...postCategories.map(category => `/chuyen-muc/${category.slug}`),
   ];
-  return Array.from(new Set(paths)).map(path => ({url: new URL(path, 'https://tonphuc.com').href}));
+  return Array.from(new Set(paths)).map(path => ({url: absoluteUrl(path)}));
 }
