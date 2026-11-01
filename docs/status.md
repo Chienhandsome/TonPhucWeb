@@ -34,9 +34,14 @@ Cập nhật: 01/11/2026. Trạng thái tại thời điểm bàn giao, không p
 
 ## Bản xem trước
 
-Bản production local tại http://127.0.0.1:3000 để người dùng duyệt.
+Bản xem trước local tại http://127.0.0.1:3000 để người dùng duyệt; sau điều chỉnh nav/intro đang chạy dev server.
 Chưa deploy hosting, chuyển DNS hoặc hủy web cũ. UI hiện là bản chờ phản hồi,
 không ghi nhận màu/font/bố cục đã được người dùng duyệt chỉ vì build/test thành công.
+
+Điều chỉnh theo yêu cầu mới: bỏ intro nền nhạt ở Giới thiệu/Sản phẩm/Tin tức/Liên hệ,
+bỏ nút danh mục và nhãn địa điểm bên phải nav; giữ h1 ẩn cho khả năng truy cập.
+Footer đã có liên kết sitemap XML và bản đồ Google Maps từ mã nhúng nguồn cũ, kèm nút chỉ đường.
+Đã kiểm tra map tải trên desktop, layout một cột ở mobile 360px không tràn ngang; TypeScript thành công.
 
 Catalog local chưa sửa được từ /admin. Đọc [nguồn dữ liệu UI](public-content.md) trước khi tiếp tục.
 

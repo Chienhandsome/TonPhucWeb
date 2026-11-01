@@ -22,6 +22,7 @@ Phiên bản cụ thể xem lockfile. Alias `@/*` trỏ về gốc repo; TypeScr
 | `app/chuyen-muc/[slug]/page.tsx` | Chuyên mục bài trong database; 404 cho chuyên mục không tồn tại |
 | `app/admin/page.tsx` | Đăng nhập, CRUD bài, thêm chuyên mục và upload ảnh; đã chỉnh khung hiển thị |
 | `app/error.tsx`, `app/not-found.tsx` | Trạng thái lỗi và 404 |
+| `app/sitemap.ts` | Sitemap XML tại /sitemap.xml: trang công khai, catalog, bài xuất bản và chuyên mục; liên kết ở footer |
 | `components/` | Header/footer client, card, catalog server, nội dung block, liên hệ và các phần dùng chung |
 | `messages/vi.json`, `i18n/request.ts` | Giao diện công khai tiếng Việt; locale cố định vi, chưa có route tiếng Anh |
 | `lib/catalog.ts` | Catalog nguồn, resolver danh mục, ghép bài database và bài nguồn |
@@ -79,7 +80,7 @@ UI admin chỉ thêm chuyên mục, chưa sửa/xóa dù RLS hỗ trợ.
 - Chuyển đủ website: nhiều trang danh mục/phân trang, mô tả và ảnh chưa đối chiếu đầy đủ.
 - Bảng sản phẩm, bản dịch, danh mục cha/con trong database và quản trị catalog/banner/liên hệ.
 - Ảnh gallery đầy đủ, editor rich text, xử lý lỗi/session admin hoàn chỉnh.
-- Redirect đầy đủ, sitemap/robots, metadata gốc/ngày đăng của toàn bộ nội dung.
+- Redirect đầy đủ, robots, metadata gốc/ngày đăng của toàn bộ nội dung; sitemap đã có cho các nguồn dữ liệu hiện tại.
 - Bản dịch tiếng Anh và route /en; hiện chỉ chuẩn bị giao diện tiếng Việt bằng next-intl.
 - Kiểm thử bằng mật khẩu admin thực, bộ e2e tự động và cấu hình lint hoàn chỉnh.
 

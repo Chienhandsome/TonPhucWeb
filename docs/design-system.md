@@ -6,6 +6,13 @@ kiến trúc thực tế xem [architecture.md](architecture.md).
 
 ## Yêu cầu đã chốt
 
+Điều chỉnh theo người dùng: bỏ khối intro nền nhạt (breadcrumb, eyebrow, tiêu đề lớn)
+ở bốn trang `/gioi-thieu`, `/san-pham`, `/tin-tuc`, `/lien-he`. Giữ h1 chỉ cho trình đọc màn hình.
+Thanh nav chỉ giữ các liên kết trang; bỏ nút danh mục sản phẩm và nhãn địa điểm bên phải.
+Trang danh mục con và chi tiết vẫn giữ cấu trúc điều hướng hiện tại.
+Footer có bản đồ Google Maps: desktop đặt địa chỉ/nút chỉ đường bên trái, map bên phải;
+mobile xếp dọc. Dùng mã nhúng đúng địa điểm lấy từ trang liên hệ web cũ, lưu trong `data/location.json`.
+
 - Làm lại UI đẹp hơn, giữ nội dung thật và nhận diện Tôn Phúc.
 - Website giới thiệu sản phẩm ngành lạnh và nhận liên hệ tư vấn; không có giỏ hàng/thanh toán.
 - Chuẩn bị Việt–Anh bằng next-intl khi làm UI mới, ra mắt tiếng Việt trước.
