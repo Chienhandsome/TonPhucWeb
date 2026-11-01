@@ -42,7 +42,8 @@ export async function getPublishedPosts(): Promise<Post[]> {
     .select("*, categories!posts_category_id_fkey(slug, name)")
     .eq("published", true)
     .order("created_at", { ascending: false });
-  if (error || !data) return SEED_POSTS.map(seedToPost);
+  if (error) throw new Error(`Không thể tải bài viết từ Supabase: ${error.message}`);
+  if (!data) return [];
   return (data as any[]).map((row) => ({
     ...row,
     category_slug: row.categories?.slug ?? null,
@@ -59,6 +60,7 @@ export async function getCategories(): Promise<Category[]> {
   const sb = getSupabase();
   if (!sb) return SEED_CATEGORIES.map((c) => ({ id: c.slug, ...c }));
   const { data, error } = await sb.from("categories").select("*").order("name");
-  if (error || !data) return SEED_CATEGORIES.map((c) => ({ id: c.slug, ...c }));
+  if (error) throw new Error(`Không thể tải chuyên mục từ Supabase: ${error.message}`);
+  if (!data) return [];
   return data as Category[];
 }

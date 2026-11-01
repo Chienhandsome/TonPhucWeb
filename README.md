@@ -1,110 +1,80 @@
-# Gas Lạnh Tôn Phúc — Website mới (skeleton)
+# TonPhucWeb — Gas Lạnh Tôn Phúc
 
-Phạm vi đã chốt ngày 01/11/2026: **làm lại UI đẹp hơn, giữ nguyên nội dung website cũ**. Xem [kế hoạch triển khai và kiểm kê mới](docs/redesign-plan.md). Danh sách 11 bài mẫu bên dưới chưa đại diện toàn bộ sản phẩm, danh mục và tin tức trên website gốc.
+Làm lại UI của [tonphuc.com](https://tonphuc.com) đẹp hơn, giữ nguyên nội dung thật.
+Website giới thiệu sản phẩm và nhận liên hệ; phạm vi hiện tại không có giỏ hàng/thanh toán.
 
-Website giới thiệu cho Gas Lạnh Tôn Phúc (tonphuc.com), đại lý gas lạnh tại TP.HCM.
-Mục đích: giới thiệu với khách hàng và để admin đăng bài. **Không có giỏ hàng, không có thanh toán.**
+**Hiện trạng:** skeleton Next.js đã kết nối Supabase local; chưa làm UI mới, chưa chuyển đủ nội dung,
+chưa có xác nhận triển khai hoặc chuyển DNS. Xem [trạng thái và việc tiếp theo](docs/status.md).
 
-> **Trạng thái hiện tại: SKELETON — chưa deploy, chưa trỏ DNS, chưa hủy web cũ.**
-> Nội dung trong skeleton mới chỉ là 11 tiêu đề lấy từ trang chủ cũ kèm mô tả tạm placeholder.
-> Nội dung đầy đủ phải chuyển từ tài khoản admin của web cũ (xem `docs/content-inventory.md`).
+## Dành cho AI coding
 
-## Stack đã chốt
+Bắt đầu từ [AGENTS.md](AGENTS.md), rồi đọc:
 
-- Next.js 14, App Router, TypeScript, Tailwind CSS.
-- Supabase: bảng `posts` và `categories`, Supabase Auth cho trang admin, Supabase Storage cho ảnh bìa.
-- Deploy sau này lên Vercel (free tier).
-- Trang admin dùng chung, không phân quyền riêng: ai có tài khoản admin đều đăng, sửa, xóa được bài.
-  Chỉ cấp tài khoản cho người nhà tin cậy.
+| Tài liệu | Nội dung |
+| --- | --- |
+| [Sản phẩm và quyết định](docs/product.md) | Mục tiêu, phạm vi đã chốt, câu hỏi còn mở, điều kiện hoàn thành |
+| [Kiến trúc](docs/architecture.md) | Code, routes, dữ liệu, auth/RLS và khoảng trống |
+| [Trạng thái](docs/status.md) | Đã làm, đã kiểm tra, chưa làm, việc tiếp theo |
+| [Kế hoạch UI và chuyển đổi](docs/redesign-plan.md) | Mẫu trang, hướng thiết kế đề xuất, thứ tự chuyển đổi |
+| [Supabase setup](docs/supabase-setup.md) | Project đã chọn, cấu hình local, cấp admin và kiểm tra |
+| [Kiểm kê nội dung ban đầu](docs/content-inventory.md) | Ghi nhận lịch sử; chưa phải tổng dữ liệu cần chuyển |
+| [Manifest mẫu](docs/source-audit/pages.json) / [URL phát hiện](docs/source-audit/links.csv) | Bằng chứng kiểm kê công khai ban đầu |
 
-## Cấu trúc
+## Chạy ở local
 
-```
-tonphuc/
-├── app/
-│   ├── page.tsx                 Trang chủ giới thiệu + danh sách bài
-│   ├── bai-viet/[slug]/page.tsx Trang chi tiết bài viết theo slug
-│   ├── chuyen-muc/[slug]/page.tsx Trang danh sách bài theo chuyên mục
-│   ├── lien-he/page.tsx         Trang liên hệ (đang để placeholder, chưa bịa số)
-│   └── admin/page.tsx           Trang admin: đăng nhập, CRUD bài, chuyên mục, upload ảnh
-├── components/                  Header, Footer, PostCard
-├── lib/
-│   ├── supabase.ts              Client Supabase (trả null khi chưa cấu hình env)
-│   ├── seed.ts                  11 tiêu đề mẫu + hàm slugify tiếng Việt
-│   └── posts.ts                 Lấy bài: có Supabase thì lấy từ DB, chưa có thì dùng seed
-├── supabase/
-│   ├── schema.sql               Tạo bảng categories, posts, bucket images, RLS
-│   └── seed.sql                 Seed 11 tiêu đề mẫu (mô tả tạm, không bịa nội dung/giá)
-├── docs/content-inventory.md    Danh mục nội dung cần chuyển từ web cũ
-├── public/logo.png              Ảnh LOGO PLACEHOLDER — thay bằng logo thật trước khi lên sóng
-├── .env.example                 Chỉ chứa placeholder, không chứa secret thật
-└── package.json
+Môi trường đang dùng: Windows PowerShell, Node.js 22; xem package.json và lockfile cho dependency.
+
+```powershell
+cd D:\Working\TonPhucWeb
+npm ci
 ```
 
-## Các trang
+Máy này đã có `.env.local`. Ở checkout mới, chỉ sao chép khi file chưa tồn tại:
 
-| Đường dẫn | Chức năng |
-|---|---|
-| `/` | Trang chủ: giới thiệu, các dòng R22 / R32 / R410A / R507 / R407C, các hãng Honeywell, Chemours, Floron, Refron, danh sách bài |
-| `/chuyen-muc/[slug]` | Bài viết theo chuyên mục (gioi-thieu, san-pham, bao-gia, kien-thuc) |
-| `/bai-viet/[slug]` | Chi tiết bài viết |
-| `/lien-he` | Liên hệ (cần điền hotline, Zalo, địa chỉ, giờ làm việc thật) |
-| `/admin` | Đăng nhập admin, thêm / sửa / xóa bài, thêm chuyên mục, upload ảnh bìa, cờ published |
+```powershell
+if (-not (Test-Path .env.local)) { Copy-Item .env.example .env.local }
+```
 
-## Setup từng bước
+Điền URL và publishable key của đúng project vào `.env.local`, rồi chạy:
 
-### 1. Tạo project Supabase
-
-1. Tạo project mới trên Supabase.
-2. Vào **SQL Editor**, chạy lần lượt `supabase/schema.sql` rồi `supabase/seed.sql` (seed chỉ để xem thử, có thể bỏ qua nếu muốn nhập bài thật ngay).
-3. Vào **Authentication → Users → Add user** để tạo tài khoản admin (email + mật khẩu).
-   Tài khoản này chỉ dùng để đăng nhập trang `/admin`, không ghi vào code.
-
-### 2. Chạy ở máy local
-
-```bash
-cd tonphuc
-cp .env.example .env.local
-# Điền NEXT_PUBLIC_SUPABASE_URL và NEXT_PUBLIC_SUPABASE_ANON_KEY thật vào .env.local
-npm install
+```powershell
 npm run dev
-# Mở http://localhost:3000 — trang chủ; http://localhost:3000/admin — trang quản trị
 ```
 
-Lưu ý: nếu chưa điền env, trang công khai vẫn chạy bằng dữ liệu seed mẫu; trang `/admin`
-sẽ hiện thông báo chưa cấu hình Supabase thay vì crash.
+Mở địa chỉ Local terminal in ra, thường là `http://localhost:3000`. Trang quản trị: `/admin`.
+Nhấn `Ctrl+C` để dừng. Nếu PowerShell không truyền đúng tùy chọn CLI qua npm, chạy trực tiếp:
 
-### 3. Deploy lên Vercel (bản xem trước, chưa trỏ tên miền)
+```powershell
+node node_modules/next/dist/bin/next dev --hostname=127.0.0.1
+```
 
-1. Đẩy code lên GitHub (repo riêng).
-2. Tạo project mới trên Vercel, import repo, chọn framework Next.js.
-3. Trong Vercel → Settings → Environment Variables, thêm đúng 2 biến từ `.env.local`:
-   `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` (và `NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET=images` nếu muốn ghi rõ).
-4. Deploy, lấy link preview `.vercel.app` cho dì duyệt trước. **Chưa trỏ tonphuc.com ở bước này.**
+## Cấu hình và dữ liệu
 
-### 4. Chuyển nội dung và lên sóng — chỉ làm khi dì duyệt xong
+- `NEXT_PUBLIC_SUPABASE_URL`: URL project.
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`: publishable key; hỗ trợ `NEXT_PUBLIC_SUPABASE_ANON_KEY` cũ.
+- `NEXT_PUBLIC_SUPABASE_STORAGE_BUCKET`: mặc định `images`.
+- Chưa có env: public dùng 11 tiêu đề mẫu và placeholder; admin báo thiếu cấu hình.
+- Có env: lấy dữ liệu thật; database trống là bình thường. Lỗi truy vấn không được che bằng seed.
+- Admin cần `app_metadata.role = admin`; chỉ tạo user trong Auth chưa đủ.
+- `.env.local` được Git bỏ qua. Không ghi mật khẩu, service-role/secret key vào repo.
 
-1. Đăng nhập admin web cũ, chuyển toàn bộ bài theo `docs/content-inventory.md` sang trang `/admin` của web mới
-   (tiêu đề, slug, chuyên mục, nội dung đầy đủ, ảnh bìa upload lên Supabase Storage).
-2. Điền thông tin liên hệ thật vào trang `/lien-he`, thay `public/logo.png` bằng logo thật của dì.
-3. Đối chiếu slug cũ — slug mới, giữ nguyên slug khi có thể, các link đổi thì làm redirect.
-4. Nhờ **chú (người đứng tên miền tonphuc.com)** trỏ DNS về Vercel theo hướng dẫn của Vercel
-   (thêm domain tonphuc.com vào project Vercel, rồi cập nhật bản ghi DNS ở nhà cung cấp tên miền).
-5. Kiểm tra kỹ trên tên miền thật: trang chủ, từng chuyên mục, từng bài, trang liên hệ, đăng nhập admin.
-6. **Chỉ sau khi kiểm tra xong mới hủy web bên thứ ba** (hủy trước sẽ mất web cũ khi web mới còn lỗi).
+**Không cần tạo project mới hoặc chạy lại schema cho máy đã kết nối.**
+`supabase/schema.sql` là schema khởi tạo; `supabase/seed.sql` chứa placeholder bật xuất bản,
+không chạy trên project thật chỉ để lấp dữ liệu. Xem [Supabase setup](docs/supabase-setup.md).
 
-## Những gì còn thiếu (chưa có trong skeleton)
+## Kiểm tra
 
-- [ ] Logo thật của Gas Lạnh Tôn Phúc (hiện là placeholder tại `public/logo.png`).
-- [ ] Nội dung đầy đủ của toàn bộ bài viết, lấy từ tài khoản admin web cũ (skeleton chỉ có tiêu đề + mô tả tạm).
-- [ ] Tổng số bài thật trong admin (trang chủ cũ chỉ hiện 11 bài, có thể còn nhiều hơn).
-- [ ] Thông tin liên hệ thật cho trang `/lien-he` (hotline, Zalo, địa chỉ, giờ làm việc).
-- [ ] Project Supabase thật + tài khoản admin (tạo theo bước 1 ở trên).
-- [ ] Repo GitHub + project Vercel (tạo khi deploy bản xem trước).
-- [ ] Quyết định cuối về DNS: chỉ chú mới trỏ được vì tên miền đứng tên chú.
+```powershell
+node node_modules/typescript/bin/tsc --noEmit --incremental false
+node --env-file=.env.local scripts/check-supabase.mjs
+npm run build
+```
 
-## Bảo mật — đọc kỹ
+Chọn kiểm tra theo phần thay đổi. Script Supabase cần mạng, thử ghi/upload bằng khách và mong đợi bị từ chối;
+đọc giới hạn trong tài liệu setup trước khi chạy. Chưa có unit/e2e test hoặc lint hoàn chỉnh.
 
-- Không commit `.env.local`, không ghi secret, mật khẩu hay key thật vào code, README hay file SQL.
-- File `.env.example` chỉ có placeholder.
-- Trang admin dùng chung: đừng chia sẻ tài khoản admin ra ngoài gia đình.
+## Quy trình lên sóng
+
+Kiểm kê đủ → duyệt luồng UI mẫu → chuyển nội dung/ảnh → kiểm thử → duyệt preview → chuyển DNS → kiểm tra tên miền thật.
+Giữ web cũ hoạt động đến khi chuyển xong. Hướng hosting trước đây là Vercel;
+chưa có xác nhận project triển khai, cấu hình hoặc chi phí thực tế. Xem [kế hoạch](docs/redesign-plan.md).
