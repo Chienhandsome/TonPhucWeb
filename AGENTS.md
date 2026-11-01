@@ -8,6 +8,9 @@
 4. `docs/architecture.md`: cấu trúc code, dữ liệu và quyền truy cập.
 5. Tài liệu chuyên đề liên quan trong `docs/` trước khi thay đổi phần đó.
 
+Khi làm UI, đọc `docs/design-system.md` trước khi chọn màu, bố cục, component hoặc thêm thư viện UI.
+Phân biệt token tạm/đề xuất với thiết kế đã duyệt; cập nhật tài liệu khi mẫu được chốt.
+
 Tài liệu là bản ghi tại thời điểm cập nhật; kiểm tra code/dịch vụ thực tế khi cần.
 Nếu code khác yêu cầu, ghi nhận khoảng cách, không tự coi hành vi hiện tại là yêu cầu đúng.
 Chỉ dẫn mới nhất của người dùng được ưu tiên; cập nhật tài liệu khi quyết định thay đổi.

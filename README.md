@@ -14,6 +14,7 @@ Bắt đầu từ [AGENTS.md](AGENTS.md), rồi đọc:
 | --- | --- |
 | [Sản phẩm và quyết định](docs/product.md) | Mục tiêu, phạm vi đã chốt, câu hỏi còn mở, điều kiện hoàn thành |
 | [Kiến trúc](docs/architecture.md) | Code, routes, dữ liệu, auth/RLS và khoảng trống |
+| [Quy chuẩn UI](docs/design-system.md) | Hướng thị giác, token, mẫu trang, component, responsive và quy trình duyệt |
 | [Trạng thái](docs/status.md) | Đã làm, đã kiểm tra, chưa làm, việc tiếp theo |
 | [Kế hoạch UI và chuyển đổi](docs/redesign-plan.md) | Mẫu trang, hướng thiết kế đề xuất, thứ tự chuyển đổi |
 | [Supabase setup](docs/supabase-setup.md) | Project đã chọn, cấu hình local, cấp admin và kiểm tra |

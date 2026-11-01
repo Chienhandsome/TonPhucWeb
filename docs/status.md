@@ -12,6 +12,7 @@ Cập nhật: 01/11/2026. Đây là bản ghi tại thời điểm cập nhật,
 - Tạo `posts`, `categories`, bucket `images`, RLS dựa trên app metadata.
 - Tạo 4 chuyên mục khởi đầu; lần kiểm tra setup có 0 bài. Không nhập placeholder vào DB.
 - Cấp quyền admin cho email người dùng chọn; chi tiết trong `supabase-setup.md`.
+- Bổ sung bộ tài liệu cho AI và `design-system.md`: hướng UI, token tạm, component, responsive và quy trình duyệt; chưa triển khai UI mới.
 
 ## Bằng chứng kiểm tra đã có
 

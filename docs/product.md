@@ -36,6 +36,7 @@ Phong cách doanh nghiệp ngành lạnh: nền sáng, chữ dễ đọc, ảnh 
 hotline/Zalo dễ thao tác trên điện thoại. Màu cuối cùng theo logo thật và bản mẫu được duyệt.
 Luồng mẫu ưu tiên: trang chủ → danh mục → chi tiết sản phẩm, kèm một bài thật.
 Chi tiết trong [kế hoạch UI và chuyển đổi](redesign-plan.md).
+Quy tắc triển khai dùng chung nằm trong [quy chuẩn UI](design-system.md); các giá trị đề xuất chưa phải thiết kế đã duyệt.
 
 ## Quyết định đa ngôn ngữ — đã chốt 01/11/2026
 
