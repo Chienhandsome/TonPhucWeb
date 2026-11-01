@@ -77,3 +77,8 @@ Kiểm tra schema thực tế trước migration remote. Chi tiết project tạ
 Tách sản phẩm/bài viết/trang thông tin và danh mục nhiều cấp là hướng trong kế hoạch.
 Chưa chốt SQL hoặc URL mới cụ thể. Chốt theo kiểm kê và yêu cầu admin;
 không triển khai mô hình mới chỉ dựa trên tên bảng của skeleton.
+
+Đã chốt dùng `next-intl` cho nền tảng Việt–Anh khi làm UI mới, trước mắt chỉ ra mắt tiếng Việt.
+Chưa cài thư viện hoặc đổi route/schema. Giữ đường dẫn tiếng Việt, dự kiến tiếng Anh dưới `/en/...`;
+dữ liệu dịch của sản phẩm/bài viết cần được thiết kế riêng trước khi nhập hàng loạt.
+Xem [quyết định đa ngôn ngữ](product.md).

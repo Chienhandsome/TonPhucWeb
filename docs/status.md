@@ -6,6 +6,7 @@ Cập nhật: 01/11/2026. Đây là bản ghi tại thời điểm cập nhật,
 
 - Khung Next.js: trang chủ, bài, chuyên mục, liên hệ và admin.
 - Chốt mục tiêu UI đẹp hơn, giữ nội dung và quy trình chuyển đổi.
+- Chốt hướng đa ngôn ngữ: chuẩn bị Việt–Anh với next-intl khi làm UI mới, ra mắt tiếng Việt trước. Chưa tích hợp thư viện hoặc bản dịch.
 - Lưu 7 HTML mẫu; phát hiện 154 URL. Chưa crawl/backup đầy đủ.
 - Kết nối local với Supabase **TonPhucWeb**, ref `kegsqaxguruwrlfndyep`.
 - Tạo `posts`, `categories`, bucket `images`, RLS dựa trên app metadata.
@@ -26,11 +27,11 @@ kiểm thử UI desktop/mobile hoặc build production. Server local có thể �
 
 ## Việc tiếp theo
 
-1. Nhận 3 câu trả lời trong `product.md`, chốt ngôn ngữ/admin/nguồn dữ liệu.
+1. Nhận 2 câu trả lời còn lại trong `product.md`: phạm vi admin và nguồn dữ liệu.
 2. Kiểm kê đủ sản phẩm, danh mục, bài, trang và tài nguyên; đối chiếu admin nếu có.
 3. Lấy logo thật, xác minh liên hệ; khảo sát/chụp mẫu desktop/mobile.
-4. Chốt mô hình sản phẩm/danh mục và bảo toàn URL theo kiểm kê.
-5. Dựng UI mẫu với dữ liệu thật, duyệt trước khi triển khai diện rộng.
+4. Chốt mô hình sản phẩm/danh mục có hỗ trợ bản dịch và bảo toàn URL theo kiểm kê.
+5. Dựng UI mẫu với dữ liệu thật, tích hợp next-intl và tách chữ giao diện tiếng Việt; duyệt trước khi triển khai diện rộng.
 6. Chuyển nội dung, kiểm thử chức năng/SEO/quyền, chuẩn bị triển khai.
 
 ## Chưa hoàn thành

@@ -9,6 +9,7 @@ Ngày chốt phạm vi: 01/11/2026.
 - Giữ sản phẩm, danh mục nhiều cấp, tin tức, giới thiệu và liên hệ.
 - Website giới thiệu và nhận liên hệ; không có giỏ hàng hoặc thanh toán theo phạm vi hiện tại của dự án.
 - Duyệt bản xem trước và chuyển nội dung trước khi chuyển tên miền.
+- Chuẩn bị nền tảng Việt–Anh với next-intl ngay khi làm UI mới, ra mắt tiếng Việt trước và bật tiếng Anh khi bản dịch được duyệt; xem `product.md`.
 
 ## Kết quả kiểm kê bước đầu
 

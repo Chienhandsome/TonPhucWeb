@@ -16,6 +16,7 @@ Chỉ dẫn mới nhất của người dùng được ưu tiên; cập nhật t
 
 - Làm lại UI của `tonphuc.com` đẹp hơn, giữ nguyên nội dung thật.
 - Website giới thiệu sản phẩm ngành lạnh và nhận liên hệ; chưa có giỏ hàng/thanh toán.
+- Đã chốt chuẩn bị Việt–Anh với next-intl khi làm UI mới, ra mắt tiếng Việt trước. Tách chữ giao diện từ đầu, thiết kế dữ liệu dịch trước khi nhập hàng loạt; chỉ bật tiếng Anh khi bản dịch được duyệt. Chi tiết trong `docs/product.md`.
 - Chưa có mô hình sản phẩm riêng; bài gắn chuyên mục `san-pham` không đại diện kiến trúc sản phẩm cuối cùng.
 - Không tự bịa giá, thông số, chứng nhận, cam kết hoặc viết nội dung thay thế để lấp chỗ trống.
 - Giữ URL cũ khi có thể; URL đổi phải có bảng đối chiếu và chuyển hướng phù hợp.
