@@ -13,8 +13,9 @@ Người dùng đã đồng ý quy trình kiểm kê → thiết kế mẫu → 
 | UI | Thiết kế lại; không cần sao chép từng pixel giao diện cũ |
 | Nội dung | Giữ nội dung thật; không thay bằng bài do AI tự viết |
 | Chuyển đổi | Sản phẩm, danh mục nhiều cấp, tin tức, giới thiệu, liên hệ; tổng số cần kiểm kê |
+| Nguồn dữ liệu | Hiện dùng website công khai. Người dùng dự kiến xin được tài khoản admin web cũ vào sáng 02/11/2026; chưa nhận/kiểm tra quyền truy cập, chưa xác nhận có thể xuất database/ảnh |
 | Giao dịch | Website giới thiệu và nhận liên hệ; không có giỏ hàng/thanh toán theo phạm vi hiện tại |
-| Admin | Đã có quản trị bài/chuyên mục/ảnh; phạm vi sản phẩm/banner/liên hệ đang hỏi người dùng |
+| Admin | Đã có quản trị bài/chuyên mục/ảnh; chưa thêm quản trị catalog sản phẩm/banner/liên hệ, phạm vi mở rộng còn chờ trả lời |
 | Ngôn ngữ | Đã chốt: chuẩn bị Việt–Anh từ đầu với next-intl, ra mắt tiếng Việt trước; bật tiếng Anh khi bản dịch được duyệt |
 | URL/SEO | Ưu tiên giữ URL cũ; mapping và 301 cho URL đổi chưa triển khai đầy đủ |
 | Supabase | Đã chọn và kết nối project TonPhucWeb |
@@ -40,7 +41,7 @@ Quy tắc triển khai dùng chung nằm trong [quy chuẩn UI](design-system.md
 
 ## Quyết định đa ngôn ngữ — đã chốt 01/11/2026
 
-- Dùng `next-intl` cho bản dịch giao diện khi triển khai UI mới; hiện chưa cài hoặc tích hợp.
+- Đã tích hợp `next-intl` cho giao diện công khai tiếng Việt trong đợt UI; chưa bật tiếng Anh.
 - Tách chữ giao diện khỏi component ngay khi làm UI mới, trước mắt hoàn thiện bộ tiếng Việt.
 - Thiết kế dữ liệu có khả năng lưu bản dịch sản phẩm/bài viết trước khi nhập hàng loạt; chưa chốt schema cụ thể.
 - Giữ URL tiếng Việt hiện có khi có thể; bản tiếng Anh dự kiến dưới `/en/...`.
@@ -51,7 +52,6 @@ Quy tắc triển khai dùng chung nằm trong [quy chuẩn UI](design-system.md
 ## Câu hỏi đang chờ
 
 1. Admin quản lý sản phẩm/danh mục/bài viết trước, hay cả banner và thông tin liên hệ?
-2. Người dùng có admin cũ, bản xuất database/kho ảnh, hay chỉ các trang công khai?
 
 Cập nhật bảng quyết định sau khi có câu trả lời; không coi lựa chọn gợi ý của AI là câu trả lời của người dùng.
 

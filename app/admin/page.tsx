@@ -156,7 +156,7 @@ export default function AdminPage() {
 
   if (!userEmail) {
     return (
-      <div className="mx-auto max-w-md">
+      <div className="admin-login">
         <h1 className="text-2xl font-bold">Đăng nhập quản trị</h1>
         <p className="mt-2 text-sm text-slate-600">
           Đăng nhập bằng tài khoản đã được cấp quyền quản trị website.
@@ -176,7 +176,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div>
+    <div className="admin-workspace">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h1 className="text-2xl font-bold">Quản trị bài viết</h1>
         <div className="flex items-center gap-3 text-sm">

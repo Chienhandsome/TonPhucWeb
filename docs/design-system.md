@@ -18,7 +18,8 @@ Phong cách doanh nghiệp ngành lạnh: gọn, rõ ràng, đáng tin cậy qua
 Hạn chế hiệu ứng trang trí không phục vụ nội dung, nền chuyển màu dày đặc và quá nhiều khối bo tròn.
 Không tự thêm số liệu thành tích, chứng nhận, logo đối tác, đánh giá khách hàng hoặc cam kết.
 
-Logo tại `public/logo.png` là placeholder. Chưa có logo gốc/bảng màu cuối cùng được xác nhận.
+Đợt UI đã lấy được logo công khai tại `/source/b984c2f09e515e.png`; UI dùng ảnh này.
+`public/logo.png` cũ vẫn là placeholder và không còn được dùng trong header. Chưa có file logo gốc chất lượng cao/bảng màu cuối cùng được xác nhận.
 Không vẽ lại logo hoặc coi màu skeleton là nhận diện thương hiệu đã duyệt.
 
 ## Nền tảng thị giác
@@ -37,6 +38,10 @@ và token dùng chung; không tạo thêm bảng màu riêng cho từng trang.
 | Khoảng cách | Theo nhịp 4/8px; section khoảng 32–64px tùy màn hình | Đề xuất |
 | Bo góc | Khoảng 8–12px cho input/card; dùng nhất quán | Đề xuất |
 | Khung nội dung | Khoảng 1200px, lề 16px mobile, 24–32px desktop | Đề xuất; skeleton hiện `max-w-5xl` |
+
+Bản UI đang triển khai thử dùng token CSS: ink `#122c42`, accent `#087b83`, nền hero `#f1f5f2`,
+nền trắng; khung 1200px, lề 18px trên mobile. Token Tailwind `brand` cũ vẫn dùng ở admin.
+Đây là bản để người dùng xem và duyệt, chưa được coi là nhận diện cuối cùng.
 
 Mã token hiện tại ở `tailwind.config.js`, CSS toàn cục ở `app/globals.css`.
 Khi triển khai, ưu tiên token có tên theo vai trò và component tái sử dụng; hạn chế rải mã màu trực tiếp trong JSX.
@@ -96,7 +101,8 @@ Trình tự section và lựa chọn sản phẩm tiêu biểu được điều 
 4. Kiểm tra desktop/mobile, bàn phím, trạng thái lỗi/trống/loading và đường dẫn bằng trình duyệt khi có thể.
 5. Trình bày mẫu để duyệt; ghi lại lựa chọn đã duyệt trong file này, rồi áp dụng cho các trang còn lại.
 
-Hiện chưa có thư viện component hoặc icon nào được chốt. Chọn theo nhu cầu thực tế của mẫu,
+Đợt UI dùng `lucide-react` cho icon và next-intl cho chữ giao diện công khai; không thêm thư viện component.
+Chọn component theo nhu cầu thực tế của mẫu,
 không cài chồng nhiều thư viện UI để giải quyết cùng một loại component.
 
 ## Đầu vào còn thiếu

@@ -1,22 +1,9 @@
-export const metadata = { title: "Liên hệ — Gas Lạnh Tôn Phúc" };
-
-export default function ContactPage() {
-  return (
-    <div>
-      <h1 className="text-2xl font-bold">Liên hệ</h1>
-      <p className="mt-2 text-slate-600">
-        Trang này là khung liên hệ. Điền số điện thoại, Zalo, địa chỉ và giờ làm việc thật của Gas Lạnh Tôn Phúc
-        vào đây trước khi lên sóng — skeleton không tự bịa số liên hệ.
-      </p>
-      <div className="mt-5 space-y-3 rounded-xl border bg-white p-5">
-        <p><span className="font-semibold">Hotline:</span> <span className="text-slate-500">[Điền số hotline thật]</span></p>
-        <p><span className="font-semibold">Zalo / Fanpage:</span> <span className="text-slate-500">[Điền link thật]</span></p>
-        <p><span className="font-semibold">Địa chỉ:</span> <span className="text-slate-500">[Điền địa chỉ thật tại TP.HCM]</span></p>
-        <p><span className="font-semibold">Giờ làm việc:</span> <span className="text-slate-500">[Điền giờ làm việc thật]</span></p>
-      </div>
-      <p className="mt-4 text-sm text-slate-500">
-        Gợi ý: form liên hệ gửi email chỉ thêm sau khi dì xác nhận muốn nhận đơn qua email hay chỉ cần khách gọi điện / nhắn Zalo.
-      </p>
-    </div>
-  );
+import {ArrowUpRight, Mail, MessageCircle, Phone} from 'lucide-react';
+import {getTranslations} from 'next-intl/server';
+import {brand,contact} from '@/lib/catalog';
+import PageIntro from '@/components/PageIntro';
+export const metadata={title:'Liên hệ',alternates:{canonical:'/lien-he'}};
+export default async function ContactPage(){
+  const t=await getTranslations('Contact');
+  return <><PageIntro eyebrow={t('eyebrow')} title={t('title')}/><section className="section container contact-layout"><div><p className="contact-intro">{t('intro')}</p><div className="contact-links"><a href={`tel:${contact.phone}`} className="contact-card"><Phone size={24}/><div><small>{t('phone')}</small><strong>{contact.phoneDisplay}</strong></div><ArrowUpRight size={19}/></a><a href={contact.zalo} target="_blank" rel="noreferrer" className="contact-card"><MessageCircle size={24}/><div><small>{t('zalo')}</small><strong>{contact.zaloDisplay}</strong></div><ArrowUpRight size={19}/></a><a href={`mailto:${contact.email}`} className="contact-card"><Mail size={24}/><div><small>{t('email')}</small><strong>{contact.email}</strong></div><ArrowUpRight size={19}/></a></div></div><div><div className="contact-store-photo">{brand.photo&&<img src={brand.photo} alt={contact.name} width={1360} height={1020}/>}</div><div className="contact-company"><p className="eyebrow">{t('company')}</p><h2>{contact.name}</h2><p>{contact.address}</p><p>{t('tax')}: {contact.taxId}</p><a href="https://www.google.com/maps/search/?api=1&query=25A+Tan+Ky+Tan+Quy+Tan+Binh+Ho+Chi+Minh" target="_blank" rel="noreferrer" className="text-link">{t('directions')}<ArrowUpRight size={17}/></a></div></div></section></>;
 }

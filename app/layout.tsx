@@ -1,20 +1,16 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import SiteHeader, { SiteFooter } from "@/components/SiteHeader";
+import type {Metadata} from 'next';
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
+import './globals.css';
+import SiteHeader, {SiteFooter} from '@/components/SiteHeader';
 
 export const metadata: Metadata = {
-  title: "Gas Lạnh Tôn Phúc — Đại lý gas lạnh tại TP.HCM",
-  description: "Gas Lạnh Tôn Phúc: đại lý gas lạnh tại TP.HCM, các dòng R22, R32, R410A, R507, R407C từ Honeywell, Chemours, Floron, Refron.",
+  metadataBase: new URL('https://tonphuc.com'),
+  title: {default:'Gas Lạnh Tôn Phúc — Vật tư điện lạnh TP.HCM',template:'%s | Tôn Phúc'},
+  description:'Gas lạnh, ống đồng, block máy nén và vật tư điện lạnh Tôn Phúc. 25A Tân Kỳ Tân Quý, TP.HCM. Hotline 0903.863.797.'
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="vi">
-      <body>
-        <SiteHeader />
-        <main className="mx-auto min-h-[60vh] max-w-5xl px-4 py-6">{children}</main>
-        <SiteFooter />
-      </body>
-    </html>
-  );
+export default async function RootLayout({children}: {children: React.ReactNode}) {
+  const messages = await getMessages();
+  return <html lang="vi"><body><NextIntlClientProvider messages={messages}><SiteHeader/><main id="main-content">{children}</main><SiteFooter/></NextIntlClientProvider></body></html>;
 }

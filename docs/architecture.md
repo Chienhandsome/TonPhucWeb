@@ -1,84 +1,90 @@
 # Kiến trúc hiện tại và khoảng trống
 
-Cập nhật theo code ngày 01/11/2026. Tính năng dự kiến không được hiểu là đã triển khai.
+Cập nhật: 01/11/2026, sau đợt UI mới. Phân biệt dữ liệu public local với dữ liệu Supabase.
 
-## Stack và cấu trúc
+## Stack
 
-Next.js 14 App Router, React 18, TypeScript, Tailwind CSS, `@supabase/supabase-js`.
-Phiên bản cài xem `package-lock.json`; `package.json` khai báo khoảng phiên bản.
-Alias `@/*` trỏ về gốc repo; TypeScript hiện `strict=false`.
+Next.js 14 App Router, React 18, TypeScript, Tailwind CSS; next-intl 4.14.9 cho giao diện tiếng Việt,
+lucide-react 1.66.0 cho icon. Cheerio là dev dependency của công cụ nhập/kiểm tra nội dung.
+Phiên bản cụ thể xem lockfile. Alias `@/*` trỏ về gốc repo; TypeScript hiện `strict=false`.
 
-| Vị trí | Trách nhiệm hiện tại |
+## Cấu trúc và routes
+
+| Vị trí | Trách nhiệm |
 | --- | --- |
-| `app/layout.tsx` | Layout, metadata chung, header/footer |
-| `app/page.tsx` | Trang chủ giới thiệu và danh sách bài |
-| `app/bai-viet/[slug]/page.tsx` | Chi tiết bài; 404 khi không tìm thấy |
-| `app/chuyen-muc/[slug]/page.tsx` | Lọc bài theo chuyên mục |
-| `app/lien-he/page.tsx` | Liên hệ còn placeholder |
-| `app/admin/page.tsx` | Client Component: đăng nhập, CRUD bài, tạo chuyên mục, upload |
-| `components/SiteHeader.tsx` | Header/footer |
-| `components/PostCard.tsx` | Card bài |
-| `lib/posts.ts` | Kiểu dữ liệu, truy vấn public, chuyển seed |
-| `lib/supabase.ts` | Client publishable key và helper bucket |
-| `lib/seed.ts` | 11 tiêu đề mẫu và `slugify` tiếng Việt |
-| `supabase/schema.sql` | SQL khởi tạo bảng, trigger, bucket, RLS |
+| `app/layout.tsx` | NextIntlClientProvider, header/footer, metadata chung |
+| `app/page.tsx` | Homepage: hero, nhóm hàng, sản phẩm, giới thiệu, tin tức, liên hệ |
+| `app/san-pham/page.tsx` | Catalog, tìm theo tên không dấu, phân trang |
+| `app/[slug]/page.tsx` | Resolve danh mục/nhóm con, sản phẩm và bài nguồn theo slug cũ; 404 cho slug không có |
+| `app/tin-tuc/page.tsx` | Tin nguồn local và bài đã xuất bản từ database |
+| `app/gioi-thieu/page.tsx`, `app/lien-he/page.tsx` | Nội dung giới thiệu/liên hệ trích từ nguồn công khai |
+| `app/bai-viet/[slug]/page.tsx` | Chi tiết bài từ admin, giữ URL đã có |
+| `app/chuyen-muc/[slug]/page.tsx` | Chuyên mục bài trong database; 404 cho chuyên mục không tồn tại |
+| `app/admin/page.tsx` | Đăng nhập, CRUD bài, thêm chuyên mục và upload ảnh; đã chỉnh khung hiển thị |
+| `app/error.tsx`, `app/not-found.tsx` | Trạng thái lỗi và 404 |
+| `components/` | Header/footer client, card, catalog server, nội dung block, liên hệ và các phần dùng chung |
+| `messages/vi.json`, `i18n/request.ts` | Giao diện công khai tiếng Việt; locale cố định vi, chưa có route tiếng Anh |
+| `lib/catalog.ts` | Catalog nguồn, resolver danh mục, ghép bài database và bài nguồn |
+| `lib/posts.ts`, `lib/supabase.ts` | Kiểu/truy vấn bài database và client Supabase |
+| `data/public-content.json` | Dữ liệu nguồn có cấu trúc; chưa quản trị catalog qua database |
+| `data/site-info.json` | Logo, ảnh và liên hệ gọn cho header/footer client |
+| `public/source/` | Ảnh đã tải để không phụ thuộc hosting cũ trong bản UI |
+| `scripts/prepare-public-content.mjs` | Trích nội dung/ảnh từ nguồn public; không ghi Supabase |
+| `scripts/check-ui.mjs` | Kiểm tra route, tiêu đề nguồn, search/empty/pagination/404 và ảnh |
 | `scripts/check-supabase.mjs` | Probe REST và quyền khách |
-| `scripts/inventory-source.ps1` | Tải 7 HTML mẫu và lập danh sách link |
-| `docs/source-audit/` | Snapshot, manifest và CSV liên kết |
+| `supabase/schema.sql` | Schema khởi tạo database, trigger, bucket và RLS |
 
-## Luồng công khai
+## Luồng dữ liệu
 
-Server Component → `lib/posts.ts` → `lib/supabase.ts` → Supabase Data API → RLS → render.
+Catalog sản phẩm/danh mục → snapshot local → Server Component → UI.
+Bài viết → `getArticles` (React cache theo request) → bài xuất bản Supabase + bài nguồn local → UI.
+Trùng slug ưu tiên bài database; lỗi Supabase vẫn được báo, không bị che bằng snapshot.
+Homepage và tin tức dùng dynamic rendering để cập nhật bài admin sau khi tải lại.
 
-- Chưa có URL/key: dùng seed cục bộ xem khung.
-- Có cấu hình: lấy dữ liệu thật; database trống trả danh sách trống, lỗi truy vấn được ném ra.
-- Bài join `categories!posts_category_id_fkey`, lọc `published=true`.
-- `getPostBySlug` hiện lấy toàn bộ bài xuất bản rồi tìm slug trong bộ nhớ; cần tối ưu khi dữ liệu tăng.
-- Nội dung render như plain text có xuống dòng; chưa có rich text/sanitizer/quy trình nhập HTML gốc.
+Dữ liệu public được trích thành block text/heading/ảnh/table. `ContentBlocks` render bằng React,
+không chèn HTML nguồn hoặc thực thi script. Bài database hiện vẫn plain text;
+chưa có editor rich text hoặc nhập HTML đầy đủ.
 
-## Quản trị và quyền
+Chưa có env thì `lib/posts.ts` dùng 11 bài seed để xem khung như trước.
+Có env thì dùng database thật, rỗng là danh sách rỗng, lỗi truy vấn ném ra.
+`getPostBySlug` vẫn lấy toàn bộ bài xuất bản rồi tìm trong bộ nhớ; cần tối ưu khi dữ liệu tăng.
 
-Form `/admin` → Auth email/password → JWT có `app_metadata.role=admin`
-→ browser gọi trực tiếp Data API/Storage → RLS thực thi quyền.
-Chưa có Next.js API routes, SSR cookie auth hay backend service-role riêng.
-Kiểm tra vai trò ở UI hỗ trợ trải nghiệm; quyền thực nằm trong database.
+Chi tiết nguồn, phạm vi 40 sản phẩm/8 bài và giới hạn trích xuất: [public-content.md](public-content.md).
 
-| Người dùng | categories | posts | bucket images |
-| --- | --- | --- | --- |
-| Khách / user thường | Đọc | Chỉ đọc bài xuất bản | Đọc công khai |
-| Admin | Đọc/CRUD theo RLS | Đọc cả nháp và CRUD | Đọc/upload/thay/xóa theo RLS |
+## Supabase và quyền
 
-UI hiện chỉ thêm chuyên mục, chưa sửa/xóa dù RLS hỗ trợ.
-Ảnh bucket public có thể xem khi biết URL, kể cả ảnh bài nháp; không dùng cho tài liệu riêng tư.
-
-## Mô hình hiện tại
+Schema remote chưa thay đổi trong đợt UI.
 
 | Bảng | Trường chính | Ghi chú |
 | --- | --- | --- |
-| `categories` | `id`, `name`, `slug`, `created_at` | UUID, slug unique; chưa có parent |
-| `posts` | `id`, `title`, `slug`, `excerpt`, `content`, `cover_image`, `category_id`, `published`, timestamps | FK category `on delete set null`, slug unique |
+| `categories` | id, name, slug, created_at | UUID, slug unique; chưa có parent |
+| `posts` | id, title, slug, excerpt, content, cover_image, category_id, published, timestamps | FK category on delete set null |
 
-Trigger cập nhật `updated_at`. Index: FK category và `(published, created_at desc)`.
-Form admin mặc định nháp; database default `published=true` — importer phải truyền trạng thái rõ ràng.
-Kiểm tra schema thực tế trước migration remote. Chi tiết project tại [Supabase setup](supabase-setup.md).
+Trigger cập nhật updated_at. Index FK category và (published, created_at desc).
+Form admin mặc định nháp; database default published=true — importer phải truyền trạng thái rõ ràng.
 
-## Khoảng trống đã biết
+Form admin → Auth email/password → JWT app_metadata.role=admin → Data API/Storage → RLS.
+Không có Next.js API routes, SSR cookie auth hay service-role backend riêng.
 
-- Chưa có bảng/trang sản phẩm riêng, thông số, gallery và danh mục cha/con.
-- Chưa có tìm kiếm/phân trang hoàn chỉnh, banner có thể quản trị, trang giới thiệu riêng.
-- URL mới khác nhiều URL gốc; chưa có mapping, redirect, sitemap/robots và metadata riêng từng bài đầy đủ.
-- Chuyên mục không tồn tại vẫn render trang trống thay vì 404.
-- UI công khai còn nhắc skeleton/README; cần thay khi làm UI mới.
-- Chưa hoàn thiện xử lý lỗi/session lifecycle trong admin.
-- Chưa có unit/e2e test hoặc lint hoàn chỉnh; có script `npm run lint` không có nghĩa lint đã sẵn sàng.
+| Người dùng | categories | posts | images |
+| --- | --- | --- | --- |
+| Khách / user thường | Đọc | Chỉ đọc bài xuất bản | Đọc public |
+| Admin | Đọc/CRUD theo RLS | Đọc cả nháp và CRUD | Đọc/upload/thay/xóa theo RLS |
 
-## Kiến trúc dự kiến
+UI admin chỉ thêm chuyên mục, chưa sửa/xóa dù RLS hỗ trợ.
+Ảnh bucket public có thể xem khi biết URL, kể cả ảnh bài nháp. Chi tiết [Supabase setup](supabase-setup.md).
 
-Tách sản phẩm/bài viết/trang thông tin và danh mục nhiều cấp là hướng trong kế hoạch.
-Chưa chốt SQL hoặc URL mới cụ thể. Chốt theo kiểm kê và yêu cầu admin;
-không triển khai mô hình mới chỉ dựa trên tên bảng của skeleton.
+## Còn thiếu
 
-Đã chốt dùng `next-intl` cho nền tảng Việt–Anh khi làm UI mới, trước mắt chỉ ra mắt tiếng Việt.
-Chưa cài thư viện hoặc đổi route/schema. Giữ đường dẫn tiếng Việt, dự kiến tiếng Anh dưới `/en/...`;
-dữ liệu dịch của sản phẩm/bài viết cần được thiết kế riêng trước khi nhập hàng loạt.
-Xem [quyết định đa ngôn ngữ](product.md).
+- Chuyển đủ website: nhiều trang danh mục/phân trang, mô tả và ảnh chưa đối chiếu đầy đủ.
+- Bảng sản phẩm, bản dịch, danh mục cha/con trong database và quản trị catalog/banner/liên hệ.
+- Ảnh gallery đầy đủ, editor rich text, xử lý lỗi/session admin hoàn chỉnh.
+- Redirect đầy đủ, sitemap/robots, metadata gốc/ngày đăng của toàn bộ nội dung.
+- Bản dịch tiếng Anh và route /en; hiện chỉ chuẩn bị giao diện tiếng Việt bằng next-intl.
+- Kiểm thử bằng mật khẩu admin thực, bộ e2e tự động và cấu hình lint hoàn chỉnh.
+
+## Vận hành local
+
+Chỉ chạy một server Next cho cùng thư mục build. Dừng dev trước khi build/start production,
+tránh tiến trình cũ ghi đè .next gây lỗi module. Bản đang bàn giao chạy production local trên cổng 3000.
+Nếu cần sửa code, dừng server production rồi chạy npm run dev. Không chạy build chồng với dev.
