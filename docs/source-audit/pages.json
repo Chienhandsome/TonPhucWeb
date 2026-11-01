@@ -1,0 +1,51 @@
+﻿[
+    {
+        "url":  "https://tonphuc.com/",
+        "status":  200,
+        "title":  "Gas Lạnh Tôn Phúc, Đại Lý Gas Lạnh Hàng Đầu Tại TP.HCM",
+        "snapshot":  "home.html",
+        "fetched_at":  "2026-11-01T15:13:39.6622554+00:00"
+    },
+    {
+        "url":  "https://tonphuc.com/gioi-thieu",
+        "status":  200,
+        "title":  "CÔNG TY TNHH ĐIỆN LẠNH TÔN PHÚC",
+        "snapshot":  "gioi-thieu.html",
+        "fetched_at":  "2026-11-01T15:13:40.9162135+00:00"
+    },
+    {
+        "url":  "https://tonphuc.com/gas-lanh",
+        "status":  200,
+        "title":  "Tổng Kho Gas Lạnh Giá Sỉ | Gas R32, R410A, R22 , R134, R404, Chính Hãng",
+        "snapshot":  "gas-lanh.html",
+        "fetched_at":  "2026-11-01T15:13:42.5651742+00:00"
+    },
+    {
+        "url":  "https://tonphuc.com/gas-lanh-r134a-floron-xuat-xu-an-do-chinh-hang",
+        "status":  200,
+        "title":  "Gas Lạnh R134a Floron Xuất Xứ Ấn Độ Chính Hãng",
+        "snapshot":  "gas-lanh-r134a-floron-xuat-xu-an-do-chinh-hang.html",
+        "fetched_at":  "2026-11-01T15:13:42.9080746+00:00"
+    },
+    {
+        "url":  "https://tonphuc.com/tin-tuc",
+        "status":  200,
+        "title":  "Tin tức",
+        "snapshot":  "tin-tuc.html",
+        "fetched_at":  "2026-11-01T15:13:43.2192623+00:00"
+    },
+    {
+        "url":  "https://tonphuc.com/dai-ly-phan-phoi-gas-lanh-hang-dau-viet-nam",
+        "status":  200,
+        "title":  "Tôn Phúc - Đại Lý Phân Phối Gas Lạnh Hàng Đầu Tp.HCM",
+        "snapshot":  "dai-ly-phan-phoi-gas-lanh-hang-dau-viet-nam.html",
+        "fetched_at":  "2026-11-01T15:13:43.5166748+00:00"
+    },
+    {
+        "url":  "https://tonphuc.com/lien-he",
+        "status":  200,
+        "title":  "",
+        "snapshot":  "lien-he.html",
+        "fetched_at":  "2026-11-01T15:13:45.4091552+00:00"
+    }
+]
