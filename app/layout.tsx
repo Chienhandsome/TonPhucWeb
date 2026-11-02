@@ -2,6 +2,7 @@ import type {Metadata} from 'next';
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 import './globals.css';
+import './readability.css';
 import SiteHeader, {SiteFooter} from '@/components/SiteHeader';
 import FloatingContact from '@/components/FloatingContact';
 import JsonLd from '@/components/JsonLd';

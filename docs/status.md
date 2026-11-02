@@ -98,6 +98,21 @@ Catalog local chưa sửa được từ /admin. Đọc [nguồn dữ liệu UI](
 
 ## Việc tiếp theo
 
+### Đợt tăng độ dễ đọc — 02/11/2026
+
+Đã sửa local theo brief phản hồi của chủ shop: chữ chính 16–17px, tên sản phẩm
+18px desktop/16px mobile, nhãn phụ từ 13px; chữ phụ và màu nhấn đậm hơn.
+Giữ banner slider hiện tại, đưa dải liên hệ ngay sau sản phẩm; thu gọn giới thiệu/tin tức.
+Footer bỏ mô tả dang dở, sửa khoảng trắng bản quyền. Mobile dùng thẻ sản phẩm nằm ngang
+và thanh gọi/Zalo có nhãn; thanh tự ẩn khi có liên kết/nút nội dung đi vào vùng nó chiếm.
+
+TypeScript, production build và 64 route checks/search/empty/pagination đạt.
+Đã xem 7 trang ở 1440px và 360px, thử menu mobile/Escape và catalog → chi tiết thật.
+Không phát hiện tràn ngang; phép đo chữ/màu DOM không phát hiện lỗi trong mẫu kiểm tra,
+không phải chứng nhận WCAG toàn diện. Ảnh trước/sau và giới hạn kiểm tra nằm trong
+[báo cáo readability](../artifacts/readability/README.md).
+Chưa được chủ shop duyệt; không commit/push/deploy, không đổi dữ liệu/SEO/admin/DNS.
+
 Đã tạo bản đồ Graphify ngày 02/11/2026 trong `graphify-out/`: quét 173 tệp,
 1.076 nút, 1.563 quan hệ và 62 nhóm. Mở `graph.html` để xem, đọc `GRAPH_REPORT.md`
 và `GRAPH_HEALTH.txt` để biết giới hạn. Không đọc `.env.local` hoặc truy vấn Supabase.

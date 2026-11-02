@@ -112,6 +112,17 @@ Không có rung/nhấp nháy tự động; hover nhấc nhẹ và tắt chuyển
 
 ## Đa ngôn ngữ
 
+### Bản sửa dễ đọc theo feedback 02/11/2026 (chờ duyệt)
+
+`app/readability.css` được nạp sau stylesheet hiện có để áp dụng cho UI công khai.
+Chữ chính 16–17px, line-height 1.6–1.7; tên sản phẩm 18px desktop/16px mobile,
+menu desktop 17px, nhãn phụ tối thiểu 13px. Chữ phụ dùng `#334155`, màu nhấn
+`#075e65`, viền `#bbc9cd`. Các giá trị này là bản sửa chờ chủ shop duyệt.
+Trang chủ ưu tiên banner → nhóm hàng → sản phẩm → liên hệ, rồi giới thiệu/tin tức thu gọn.
+Mobile 360px dùng thẻ sản phẩm ngang một cột; gọi/Zalo thành thanh có nhãn ở đáy,
+tạm ẩn khi liên kết/nút nội dung có thể bị che. Desktop giữ hai nút nổi dạng tròn.
+Không áp dụng bộ cỡ chữ này cho form admin; không đổi nội dung và watermark ảnh.
+
 - Khi làm UI mới, đưa chữ giao diện vào message của next-intl, không hardcode rải rác trong component.
 - Bản dịch nội dung sản phẩm/bài viết thuộc mô hình dữ liệu, không đưa toàn bộ vào file message UI.
 - Dùng layout linh hoạt khi bản dịch dài hơn; không ghép câu từ các mảnh dịch rời.

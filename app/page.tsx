@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import {ArrowRight, ArrowUpRight, ChevronRight, Snowflake, Wind, Wrench, Layers3, Component, Droplets, Box} from 'lucide-react';
+import {ArrowUpRight, ChevronRight, Snowflake, Wind, Wrench, Layers3, Component, Droplets, Box} from 'lucide-react';
 import {getTranslations} from 'next-intl/server';
-import {aboutBlocks, brand, categories, contact, getArticles, products} from '@/lib/catalog';
+import {aboutBlocks, categories, getArticles, products} from '@/lib/catalog';
 import ProductCard from '@/components/ProductCard';
-import PostCard from '@/components/PostCard';
 import ContactBand from '@/components/ContactBand';
 import HomeBanner from '@/components/HomeBanner';
 import banners from '@/data/home-banners.json';
@@ -21,8 +20,10 @@ export default async function HomePage() {
       <div className="category-grid">{categories.map((category,index)=>{const Icon=icons[index%icons.length];return <Link href={`/${category.slug}`} key={category.slug} className="category-tile"><span className="category-icon"><Icon size={29} strokeWidth={1.4}/></span><span>{category.title}</span><ChevronRight size={16}/></Link>;})}</div>
     </section>
     <section className="section section-soft"><div className="container"><div className="section-heading"><div><p className="eyebrow">{t('featuredEyebrow')}</p><h2>{t('featuredTitle')}</h2></div><Link href="/gas-lanh" className="text-link">{t('viewAll')}<ArrowUpRight size={17}/></Link></div><div className="product-grid">{featured.map(product=><ProductCard key={product.slug} product={product}/>)}</div></div></section>
-    <section className="section container about-split"><div className="about-photo">{brand.photo && <img src={brand.photo} alt={t('store')} loading="lazy" width={1360} height={1020}/>}<div className="about-photo-note"><span>TP. HỒ CHÍ MINH</span><strong>VẬT TƯ LẠNH<br/>TÔN PHÚC</strong></div></div><div className="about-copy"><p className="eyebrow">{t('aboutEyebrow')}</p><h2>{t('aboutTitle')}</h2><p>{aboutBlocks.find(block=>block.type==='paragraph')?.text}</p><Link href="/gioi-thieu" className="text-link">{t('aboutLink')}<ArrowUpRight size={18}/></Link><div className="about-address"><span>{t('addressLabel')}</span><p>{contact.address}</p></div></div></section>
-    <section className="section section-news"><div className="container"><div className="section-heading"><div><p className="eyebrow">{t('newsEyebrow')}</p><h2>{t('newsTitle')}</h2></div><Link href="/tin-tuc" className="text-link">{t('newsLink')}<ArrowRight size={18}/></Link></div><div className="news-grid">{articles.slice(0,3).map(article=><PostCard key={article.slug} article={article}/>)}</div></div></section>
     <ContactBand/>
+    <section className="container home-secondary">
+      <div><h2>{t('aboutTitle')}</h2><p>{aboutBlocks.find(block=>block.type==='paragraph')?.text}</p><Link href="/gioi-thieu" className="text-link">{t('aboutLink')}<ArrowUpRight size={18}/></Link></div>
+      <div><h2>{t('newsTitle')}</h2><ul className="home-news-list">{articles.slice(0,3).map(article=><li key={article.slug}><Link href={article.href||`/${article.slug}`}><span>{article.title}</span><ArrowUpRight size={18}/></Link></li>)}</ul><Link href="/tin-tuc" className="text-link">{t('newsLink')}<ArrowUpRight size={18}/></Link></div>
+    </section>
   </>;
 }

@@ -1,0 +1,44 @@
+[
+  {
+    "dock": "hidden",
+    "overflow": false,
+    "path": "/",
+    "width": 360
+  },
+  {
+    "dock": "hidden",
+    "overflow": false,
+    "path": "/san-pham",
+    "width": 360
+  },
+  {
+    "dock": "hidden",
+    "overflow": false,
+    "path": "/san-pham?q=R32",
+    "width": 360
+  },
+  {
+    "dock": "hidden",
+    "overflow": false,
+    "path": "/gas-lanh-r134a-floron-xuat-xu-an-do-chinh-hang",
+    "width": 360
+  },
+  {
+    "dock": "visible",
+    "overflow": false,
+    "path": "/tin-tuc",
+    "width": 360
+  },
+  {
+    "dock": "visible",
+    "overflow": false,
+    "path": "/gioi-thieu",
+    "width": 360
+  },
+  {
+    "dock": "visible",
+    "overflow": false,
+    "path": "/lien-he",
+    "width": 360
+  }
+]

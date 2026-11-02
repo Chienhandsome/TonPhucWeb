@@ -1,0 +1,114 @@
+[
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/",
+    "productFont": "18px",
+    "small": [],
+    "width": 1440
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/san-pham",
+    "productFont": "18px",
+    "small": [],
+    "width": 1440
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/san-pham?q=R32",
+    "productFont": "18px",
+    "small": [],
+    "width": 1440
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/gas-lanh-r134a-floron-xuat-xu-an-do-chinh-hang",
+    "productFont": "18px",
+    "small": [],
+    "width": 1440
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/tin-tuc",
+    "productFont": null,
+    "small": [],
+    "width": 1440
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/gioi-thieu",
+    "productFont": null,
+    "small": [],
+    "width": 1440
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/lien-he",
+    "productFont": null,
+    "small": [],
+    "width": 1440
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/",
+    "productFont": "16px",
+    "small": [],
+    "width": 360
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/san-pham",
+    "productFont": "16px",
+    "small": [],
+    "width": 360
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/san-pham?q=R32",
+    "productFont": "16px",
+    "small": [],
+    "width": 360
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/gas-lanh-r134a-floron-xuat-xu-an-do-chinh-hang",
+    "productFont": "16px",
+    "small": [],
+    "width": 360
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/tin-tuc",
+    "productFont": null,
+    "small": [],
+    "width": 360
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/gioi-thieu",
+    "productFont": null,
+    "small": [],
+    "width": 360
+  },
+  {
+    "low": [],
+    "overflow": false,
+    "path": "/lien-he",
+    "productFont": null,
+    "small": [],
+    "width": 360
+  }
+]
