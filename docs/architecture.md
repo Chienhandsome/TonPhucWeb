@@ -6,6 +6,7 @@ Cập nhật: 01/11/2026, sau đợt UI mới. Phân biệt dữ liệu public l
 
 Next.js 14 App Router, React 18, TypeScript, Tailwind CSS; next-intl 4.14.9 cho giao diện tiếng Việt,
 lucide-react 1.66.0 cho icon. Cheerio là dev dependency của công cụ nhập/kiểm tra nội dung.
+Slider trang chủ dùng `embla-carousel-react`, `embla-carousel-autoplay`, `embla-carousel-fade` 8.6.0.
 Phiên bản cụ thể xem lockfile. Alias `@/*` trỏ về gốc repo; TypeScript hiện `strict=false`.
 
 ## Cấu trúc và routes
@@ -14,6 +15,8 @@ Phiên bản cụ thể xem lockfile. Alias `@/*` trỏ về gốc repo; TypeScr
 | --- | --- |
 | `app/layout.tsx` | NextIntlClientProvider, header/footer, metadata chung |
 | `app/page.tsx` | Homepage: hero, nhóm hàng, sản phẩm, giới thiệu, tin tức, liên hệ |
+| `components/HomeBanner.tsx`, `data/home-banners.json` | Client slider thay hero, metadata/ảnh gốc lấy từ snapshot công khai; chữ điều khiển tách `messages/vi.json` |
+| `public/banners/`, `scripts/prepare-banners.mjs` | 5 banner PNG gốc; script trích caption/href và tải ảnh từ nguồn, không ghi database |
 | `app/san-pham/page.tsx` | Catalog, tìm theo tên không dấu, phân trang |
 | `app/[slug]/page.tsx` | Resolve danh mục/nhóm con, sản phẩm và bài nguồn theo slug cũ; 404 cho slug không có |
 | `app/tin-tuc/page.tsx` | Tin nguồn local và bài đã xuất bản từ database |

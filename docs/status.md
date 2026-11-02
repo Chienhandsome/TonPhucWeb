@@ -15,6 +15,27 @@ Cập nhật: 01/11/2026. Trạng thái tại thời điểm bàn giao, không p
 
 ## Bằng chứng kiểm tra UI
 
+02/11/2026: slider 5 banner gốc đã thay hero theo quyết định mới; tiêu đề/nút nằm dưới ảnh,
+ảnh cửa hàng vẫn ở phần giới thiệu. Embla stable 8.6.0, desktop fade/mobile kéo ngang,
+autoplay 6 giây, play/pause, chấm chọn, vòng lặp và phím mũi tên; focus không ở lại slide ẩn.
+Đã xem desktop/mobile 360px, thử điều khiển và kéo mobile 1→2, không tràn ngang;
+console browser production không có error/warn trong lượt kiểm tra. Có xử lý reduced-motion,
+chưa mô phỏng preference này qua browser tool. Không thay Supabase hoặc thêm quản trị banner.
+TypeScript, build production, 5 unit SEO, 64 route và 10 integration SEO đã đạt;
+đối chiếu 5 title/href từ JSON, 3 đích route và 5 ảnh tối ưu đều thành công.
+Ảnh gốc tổng 5.126.720 byte; WebP width1200 quality85 tổng 676.758 byte trong phép đo local,
+không phải số đo Core Web Vitals/Lighthouse. Chi tiết nguồn: `public-content.md`.
+Đã deploy slider READY `dpl_7GA7XYvMBSxB1BsZ4YXmZpsV6QeG`, alias Vercel giữ nguyên;
+10 kiểm tra SEO remote và kiểm tra 5 slide/ảnh tối ưu đạt. Browser remote Next/chấm chọn hoạt động,
+desktop/mobile không tràn ngang, không có console error/warn trong lượt kiểm tra.
+URL mới truy cập HTTP200 không xác thực; CLI báo protection trống. Không thay cài đặt này trong đợt slider;
+noindex vẫn giữ. Các ghi nhận bảo vệ đăng nhập bên dưới thuộc các bản deploy trước.
+
+02/11/2026: bỏ thẻ gas R134a/Floron nổi trên hero theo phản hồi, bỏ CSS của thẻ và mở rộng ảnh cửa hàng.
+TypeScript và build production đạt; screenshot desktop/mobile 360px đã xem, không tràn ngang và không còn thẻ nổi.
+Đã cập nhật Vercel READY `dpl_GyPY5enrx1ETJXsqLijx5jc3TaQz`, alias giữ nguyên;
+HTML remote xác nhận bỏ thẻ nổi, giữ ảnh cửa hàng/6 thẻ sản phẩm phía dưới và noindex.
+
 - Build production sạch thành công, không còn cảnh báo import JSON.
 - TypeScript noEmit thành công.
 - `scripts/check-ui.mjs`: vượt 64 kiểm tra route/tiêu đề, thêm search R32, empty search, trang 2 và ảnh bìa local.
@@ -34,8 +55,23 @@ Cập nhật: 01/11/2026. Trạng thái tại thời điểm bàn giao, không p
 
 ## Bản xem trước
 
+02/11/2026: đã deploy Vercel theo yêu cầu. Build production, TypeScript và 5 unit checks SEO đã đạt.
+Đã thêm `.vercelignore` và bỏ qua `.vercel/` trong Git. Connector tạo project bị 403;
+CLI đã đăng nhập và tạo `congchien/tonphucweb`, cấu hình Next.js/Node 22 cùng 5 biến môi trường public/noindex.
+Người dùng đã xác nhận riêng deployment Production đầu tiên. Sau sửa lockfile thiếu optional SWC helper,
+deployment `dpl_FCzdWns596DQo1Zm9sn2Tmv9VfV8` đã READY, build 48 giây:
+https://tonphucweb-kmt2ap166-congchien.vercel.app (alias https://tonphucweb-congchien.vercel.app).
+10 kiểm tra SEO và 64 route UI remote đạt, gồm search/empty/pagination; ảnh bìa local cũng được kiểm tra tồn tại.
+Runtime logs không có level:error trong cửa sổ kiểm tra 5 phút.
+Giữ Vercel Authentication; browser remote chưa qua màn hình login, chưa kiểm tra visual remote hoặc phiên admin thật.
+Audit dependency có Next.js critical và PostCSS gián tiếp high; cần xử lý trước mở công khai, chưa nâng major.
+Chi tiết [triển khai Vercel](vercel-deploy.md). Giữ noindex và chưa thay DNS.
+Đã kết nối GitHub `Chienhandsome/TonPhucWeb` sau khi người dùng cấp quyền App Vercel;
+API xác nhận đúng repo và nhánh Production `main`. Từ lần push tiếp theo dùng auto-deploy Git;
+chưa kiểm chứng một push thực tế, chưa commit/push các thay đổi local thay người dùng.
+
 Bản xem trước local tại http://127.0.0.1:3000 để người dùng duyệt; sau điều chỉnh nav/intro đang chạy dev server.
-Chưa deploy hosting, chuyển DNS hoặc hủy web cũ. UI hiện là bản chờ phản hồi,
+Đã có bản duyệt Vercel nêu trên; chưa chuyển DNS hoặc hủy web cũ. UI hiện là bản chờ phản hồi,
 không ghi nhận màu/font/bố cục đã được người dùng duyệt chỉ vì build/test thành công.
 
 Điều chỉnh theo yêu cầu mới: bỏ intro nền nhạt ở Giới thiệu/Sản phẩm/Tin tức/Liên hệ,

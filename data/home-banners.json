@@ -1,0 +1,57 @@
+[
+  {
+    "id": "banner-1",
+    "image": "/banners/banner-1.png",
+    "width": 1366,
+    "height": 453,
+    "title": "Gas lạnh",
+    "description": "Gas lạnh",
+    "href": "/gas-lanh-r404a",
+    "sourceUrl": "https://tonphuc.com/upload/hinhanh/banner-ton-phuc-mo%CC%9Bi-4364.png",
+    "sourcePage": "https://tonphuc.com/"
+  },
+  {
+    "id": "banner-2",
+    "image": "/banners/banner-2.png",
+    "width": 1366,
+    "height": 453,
+    "title": "VẬT TƯ LẠNH TÔN PHÚC",
+    "description": "",
+    "href": "/gas-lanh",
+    "sourceUrl": "https://tonphuc.com/upload/hinhanh/slider-ton-phc-2-5021.png",
+    "sourcePage": "https://tonphuc.com/"
+  },
+  {
+    "id": "banner-3",
+    "image": "/banners/banner-3.png",
+    "width": 1366,
+    "height": 453,
+    "title": "CUNG CẤP GAS LẠNH CHÍNH HÃNG",
+    "description": "Hotline: 0914.157.636 - 0903.863.797 ( Mr. Phúc)",
+    "href": "/gas-lanh",
+    "sourceUrl": "https://tonphuc.com/upload/hinhanh/hinh-slider-ton-phuc-6147.png",
+    "sourcePage": "https://tonphuc.com/"
+  },
+  {
+    "id": "banner-4",
+    "image": "/banners/banner-4.png",
+    "width": 1366,
+    "height": 453,
+    "title": "Điện lạnh",
+    "description": "Điện lạnh",
+    "href": "/san-pham",
+    "sourceUrl": "https://tonphuc.com/upload/hinhanh/banner-gas-ton-phuc-3743.png",
+    "sourcePage": "https://tonphuc.com/"
+  },
+  {
+    "id": "banner-5",
+    "image": "/banners/banner-5.png",
+    "width": 1366,
+    "height": 453,
+    "title": "Kho gas lạnh",
+    "description": "Kho gas lạnh",
+    "href": "/gas-lanh",
+    "sourceUrl": "https://tonphuc.com/upload/hinhanh/banner-t0n-phuc-moi-7940.png",
+    "sourcePage": "https://tonphuc.com/"
+  }
+]

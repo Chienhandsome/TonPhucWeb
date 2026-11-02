@@ -11,6 +11,7 @@ Người dùng đã đồng ý quy trình kiểm kê → thiết kế mẫu → 
 | Hạng mục | Quyết định / trạng thái |
 | --- | --- |
 | UI | Thiết kế lại; không cần sao chép từng pixel giao diện cũ |
+| Banner trang chủ | Đã chốt 02/11/2026: slider 5 banner nguồn thay hero; caption riêng, responsive, autoplay có điều khiển. Cấu hình local, chưa mở rộng quản trị banner |
 | Nội dung | Giữ nội dung thật; không thay bằng bài do AI tự viết |
 | Chuyển đổi | Sản phẩm, danh mục nhiều cấp, tin tức, giới thiệu, liên hệ; tổng số cần kiểm kê |
 | Nguồn dữ liệu | Hiện dùng website công khai. Người dùng dự kiến xin được tài khoản admin web cũ vào sáng 02/11/2026; chưa nhận/kiểm tra quyền truy cập, chưa xác nhận có thể xuất database/ảnh |
@@ -19,7 +20,7 @@ Người dùng đã đồng ý quy trình kiểm kê → thiết kế mẫu → 
 | Ngôn ngữ | Đã chốt: chuẩn bị Việt–Anh từ đầu với next-intl, ra mắt tiếng Việt trước; bật tiếng Anh khi bản dịch được duyệt |
 | URL/SEO | Ưu tiên giữ URL cũ; mapping và 301 cho URL đổi chưa triển khai đầy đủ |
 | Supabase | Đã chọn và kết nối project TonPhucWeb |
-| Hosting mới | README trước đây định hướng Vercel; chưa có xác nhận triển khai/plan thực tế |
+| Hosting mới | Đã deploy bản duyệt trên Vercel `congchien/tonphucweb` ngày 02/11/2026, Production đầu tiên được xác nhận riêng; giữ authentication/noindex, chưa nối domain thật |
 | Lên sóng | Duyệt nội dung và preview trước khi chuyển DNS; chưa hủy hosting cũ |
 
 ## Bảo toàn nội dung

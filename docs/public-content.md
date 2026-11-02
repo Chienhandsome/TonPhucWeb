@@ -10,6 +10,8 @@ toàn bộ nội dung và khả năng xuất dữ liệu/ảnh, chưa coi snapsh
   40 sản phẩm xuất hiện trên trang chủ, 8 bài đầu chọn từ khối tin trang chủ, nội dung giới thiệu và liên hệ.
 - `data/site-info.json`: bản nhỏ chỉ chứa logo/ảnh cửa hàng và thông tin liên hệ, dùng cho header/footer client.
 - `public/source/`: 54 file ảnh tải từ website gốc trong lượt chuẩn bị UI.
+- `data/home-banners.json`, `public/banners/`: thêm 5 banner gốc trang chủ ngày 02/11/2026,
+  đủ ảnh 1366×453, tiêu đề/description/href và URL nguồn. Không nằm trong 54 ảnh nói trên.
 - `docs/source-audit/*.html`: snapshot nguồn để đối chiếu. Dữ liệu UI được tách thành text/block/ảnh,
   không chèn HTML hoặc thực thi script của web cũ.
 
@@ -29,6 +31,13 @@ Xem danh sách `failures` trong JSON. Thông tin địa chỉ/hotline lấy từ
 - URL sản phẩm/bài nguồn giữ slug gốc ở `/<slug>`; `/bai-viet/<slug>` tiếp tục phục vụ bài từ admin.
 
 ## Chuẩn bị lại dữ liệu
+
+Banner riêng: `node scripts/prepare-banners.mjs`, đọc `#slider .itemsl` trong snapshot `home.html`,
+tải ảnh PNG gốc từ đúng tonphuc.com, kiểm tra chữ ký PNG/kích thước và lưu 5 slide.
+Lệnh ghi đè file banner/JSON sinh ra; không chạy nếu chưa muốn đồng bộ lại từ snapshot.
+Banner hiện chưa chỉnh trong admin; không thêm bảng Supabase. Next Image phục vụ ảnh tối ưu,
+ảnh đầu có priority, ảnh hiện tại/kế tiếp tải sớm sau hydration, các ảnh còn lại lazy.
+Title/link giữ nguyên nguồn; caption trùng hệt title không lặp lại. Nội dung chữ in trong ảnh được giữ nguyên.
 
 ```powershell
 node scripts/prepare-public-content.mjs

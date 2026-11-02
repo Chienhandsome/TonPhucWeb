@@ -1,0 +1,12 @@
+.git/
+.next/
+.next-dev/
+node_modules/
+graphify-out/
+docs/
+supabase/
+tests/
+scripts/
+.env*
+AGENTS.md
+README.md

@@ -5,7 +5,8 @@ Website giới thiệu sản phẩm và nhận liên hệ; phạm vi hiện tạ
 
 **Hiện trạng:** đã triển khai bản UI mới bằng Next.js, kết nối Supabase và chuẩn bị next-intl tiếng Việt.
 Catalog tham chiếu có 40 sản phẩm, 8 bài nguồn và ảnh thật; chưa chuyển đủ website hoặc quản trị catalog qua database.
-Chưa triển khai hosting/chuyển DNS. Xem [trạng thái và việc tiếp theo](docs/status.md).
+Đã có [bản Vercel](https://tonphucweb-congchien.vercel.app) với slider 5 banner nguồn, giữ noindex; chưa chuyển DNS.
+Xem [trạng thái và việc tiếp theo](docs/status.md), [triển khai Vercel](docs/vercel-deploy.md).
 
 ## Dành cho AI coding
 
@@ -83,5 +84,6 @@ Mỗi cổng chỉ chạy một server; khi kiểm tra production song song vớ
 ## Quy trình lên sóng
 
 Kiểm kê đủ → duyệt luồng UI mẫu → chuyển nội dung/ảnh → kiểm thử → duyệt preview → chuyển DNS → kiểm tra tên miền thật.
-Giữ web cũ hoạt động đến khi chuyển xong. Hướng hosting trước đây là Vercel;
-chưa có xác nhận project triển khai, cấu hình hoặc chi phí thực tế. Xem [kế hoạch](docs/redesign-plan.md).
+Giữ web cũ hoạt động đến khi chuyển xong. Đã deploy bản duyệt lên `congchien/tonphucweb` trên Vercel,
+giữ noindex; bản slider hiện truy cập được không đăng nhập, chưa nối domain thật. Đã liên kết GitHub: push `main` → Production,
+nhánh khác → Preview; commit ở local chưa kích hoạt deploy. Xem [triển khai](docs/vercel-deploy.md).
