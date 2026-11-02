@@ -23,8 +23,9 @@ mobile xếp dọc. Dùng mã nhúng đúng địa điểm lấy từ trang liê
 02/11/2026: người dùng chốt slider thay hero hai cột. Dùng đủ 5 banner nguồn, giữ tỷ lệ 1366×453,
 khung rộng tối đa 1200px; caption/nút nằm dưới ảnh để không che chữ có sẵn. Ảnh cửa hàng giữ ở phần giới thiệu.
 Embla 8.6.0 (React/Autoplay/Fade): desktop fade, mobile chuyển ngang để vuốt tự nhiên;
-chu kỳ 6 giây, có trước/sau/chấm chọn/play-pause,
-vuốt và phím mũi tên. Dừng khi tương tác/focus/hover; mặc định không tự chạy nếu giảm chuyển động.
+chu kỳ 6 giây, mặc định tự chuyển; theo yêu cầu mới bỏ nút trước/sau và play-pause,
+chỉ giữ chấm chọn, vuốt và phím mũi tên. Tạm dừng khi focus/hover, tiếp tục khi rời;
+mặc định không tự chạy nếu giảm chuyển động.
 Không còn thẻ nổi “R134a · Floron” hoặc tọa độ trang trí của hero cũ.
 
 - Làm lại UI đẹp hơn, giữ nội dung thật và nhận diện Tôn Phúc.

@@ -25,6 +25,7 @@ html {scroll-padding-top:190px}
 .banner-caption h2 {color:var(--brand-red)}
 .banner-cta {background:var(--brand-red);color:#fff}
 .banner-cta:hover {background:var(--brand-red-hover)}
+.banner-controls {justify-content:center}
 .category-icon {background:#fff7d6;color:var(--brand-red)}
 .contact-band {border-left:6px solid var(--brand-yellow)}
 .contact-band .button {background:var(--brand-yellow);color:var(--ink)}

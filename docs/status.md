@@ -104,6 +104,12 @@ Catalog local chưa sửa được từ /admin. Đọc [nguồn dữ liệu UI](
 
 ## Việc tiếp theo
 
+02/11/2026: banner bỏ hai nút mũi tên và nút tự chuyển theo yêu cầu mới;
+giữ chấm chọn ở giữa và mặc định autoplay 6 giây, tạm dừng khi hover/focus,
+tự tiếp tục sau tương tác; vẫn tôn trọng tùy chọn giảm chuyển động.
+TypeScript/build đạt; browser xác nhận không còn nút mũi tên/playback, slide tự đổi,
+5 chấm căn giữa và mobile 360px không tràn ngang. Ảnh `artifacts/brand-nav/banner-dots-only*.jpg`.
+
 ### Đợt tăng độ dễ đọc — 02/11/2026
 
 Đã sửa local theo brief phản hồi của chủ shop: chữ chính 16–17px, tên sản phẩm

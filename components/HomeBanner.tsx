@@ -3,7 +3,7 @@
 import {useCallback, useEffect, useMemo, useState} from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {ArrowLeft, ArrowRight, ArrowUpRight, Pause, Play} from 'lucide-react';
+import {ArrowUpRight} from 'lucide-react';
 import {useTranslations} from 'next-intl';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
@@ -53,8 +53,12 @@ export default function HomeBanner({slides, heading}: {slides: BannerSlide[]; he
     const respectMotion = () => {
       setReducedMotion(preference.matches);
       if (preference.matches) autoplay.stop();
+      else if (!document.hidden) autoplay.play();
     };
-    const visibility = () => { if (document.hidden) autoplay.stop(); };
+    const visibility = () => {
+      if (document.hidden) autoplay.stop();
+      else if (!preference.matches) autoplay.play();
+    };
     sync();
     respectMotion();
     api.on('select', sync).on('reInit', sync).on('settle', syncFocus);
@@ -74,13 +78,22 @@ export default function HomeBanner({slides, heading}: {slides: BannerSlide[]; he
 
   const navigate = useCallback((destination: number) => {
     if (!api) return;
-    api.plugins().autoplay.stop();
+    api.plugins().autoplay.reset();
     api.scrollTo((destination + slides.length) % slides.length, reducedMotion);
   }, [api, reducedMotion, slides.length]);
+
+  const resume = (root: HTMLElement) => {
+    if (!reducedMotion && !document.hidden && !root.matches(':hover') && !root.contains(document.activeElement)) {
+      api?.plugins().autoplay.play();
+    }
+  };
 
   if (!slides.length) return null;
   return <section className="home-banner" aria-label={t('label')} aria-roledescription={t('carousel')}
     onFocusCapture={() => api?.plugins().autoplay.stop()}
+    onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) resume(event.currentTarget); }}
+    onMouseLeave={event => resume(event.currentTarget)}
+    onPointerUp={event => resume(event.currentTarget)}
     onKeyDown={event => {
       if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
         event.preventDefault();
@@ -114,28 +127,12 @@ export default function HomeBanner({slides, heading}: {slides: BannerSlide[]; he
         </div>
       </div>
       <div className="banner-controls">
-        <div className="banner-arrows">
-          <button type="button" onClick={() => navigate(selected - 1)} disabled={!api}
-            aria-label={t('previous')} aria-controls="home-banner-slides"><ArrowLeft size={18}/></button>
-          <button type="button" onClick={() => navigate(selected + 1)} disabled={!api}
-            aria-label={t('next')} aria-controls="home-banner-slides"><ArrowRight size={18}/></button>
-        </div>
         <div className="banner-dots" aria-label={t('choose')}>
           {slides.map((slide, index) => <button type="button" key={slide.id}
             aria-label={t('goTo', {current: index + 1, title: slide.title})}
             aria-pressed={index === selected} aria-controls="home-banner-slides" disabled={!api}
             onClick={() => navigate(index)}><span/></button>)}
         </div>
-        <button type="button" className="banner-playback" disabled={!api}
-          aria-label={playing ? t('pause') : t('play')} aria-controls="home-banner-slides"
-          onClick={() => {
-            const autoplay = api?.plugins().autoplay;
-            if (autoplay?.isPlaying()) autoplay.stop();
-            else autoplay?.play(reducedMotion);
-          }}>
-          {playing ? <Pause size={15}/> : <Play size={15}/>}
-          <span>{playing ? t('pauseShort') : t('playShort')}</span>
-        </button>
       </div>
       <p className="sr-only" aria-live={playing ? 'off' : 'polite'} aria-atomic="true">
         {t('position', {current: selected + 1, total: slides.length})}: {slides[selected].title}
