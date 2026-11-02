@@ -1,9 +1,44 @@
 /* Public UI readability pass. Keep admin forms and source content unchanged. */
 :root {
+  --brand-red: #b51e25;
+  --brand-red-hover: #96151b;
+  --brand-yellow: #ffdf45;
+  --brand-blue: #09539a;
   --muted: #334155;
-  --accent: #075e65;
-  --accent-light: #e8f2f1;
+  --accent: var(--brand-blue);
+  --accent-light: #edf4fc;
   --line: #bbc9cd;
+}
+
+/* Brand accents stay concentrated around navigation and contact actions. */
+html {scroll-padding-top:190px}
+.site-header {position:sticky;top:0;z-index:40;background:#fff;box-shadow:0 3px 12px #122c4214}
+.nav-border {background:var(--brand-blue);border-color:var(--brand-blue)}
+.main-navigation {gap:0}
+.main-navigation > a {color:#fff;padding-inline:24px}
+.main-navigation > a:hover, .main-navigation > a.active {color:#fff;background:var(--brand-red)}
+.main-navigation > a.active::after {background:var(--brand-yellow);height:4px;left:20px;right:20px;bottom:0}
+.main-navigation > a:focus-visible {outline-color:var(--brand-yellow);outline-offset:-5px}
+.header-phone strong, .header-phone .phone-disc {color:var(--brand-red)}
+.header-phone .phone-disc {background:#fff3f1;border-color:#f0c4c6}
+.banner-caption {border-top:4px solid var(--brand-yellow)}
+.banner-caption h2 {color:var(--brand-red)}
+.banner-cta {background:var(--brand-red);color:#fff}
+.banner-cta:hover {background:var(--brand-red-hover)}
+.category-icon {background:#fff7d6;color:var(--brand-red)}
+.contact-band {border-left:6px solid var(--brand-yellow)}
+.contact-band .button {background:var(--brand-yellow);color:var(--ink)}
+.contact-band .button:hover {background:#ffec8a}
+.site-footer {border-top:4px solid var(--brand-yellow)}
+.floating-contact .floating-phone {background:var(--brand-red)}
+
+@media(max-width:600px) {
+  html {scroll-padding-top:165px}
+  .site-header .header-phone {border-color:var(--brand-red);background:#fff8f7}
+  .site-header .mobile-toggle {color:var(--brand-red)}
+  .main-navigation {background:var(--brand-blue);max-height:calc(100dvh - 155px);overflow-y:auto}
+  .main-navigation > a.active {border-left:4px solid var(--brand-yellow);padding-left:8px}
+  .floating-contact .floating-phone {background:var(--brand-red)}
 }
 
 .utility-bar, .site-header, .site-footer, .home-banner, .section,

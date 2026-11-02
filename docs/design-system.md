@@ -9,7 +9,15 @@ kiến trúc thực tế xem [architecture.md](architecture.md).
 Điều chỉnh theo người dùng: bỏ khối intro nền nhạt (breadcrumb, eyebrow, tiêu đề lớn)
 ở bốn trang `/gioi-thieu`, `/san-pham`, `/tin-tuc`, `/lien-he`. Giữ h1 chỉ cho trình đọc màn hình.
 Thanh nav chỉ giữ các liên kết trang; bỏ nút danh mục sản phẩm và nhãn địa điểm bên phải.
-Trang danh mục con và chi tiết vẫn giữ cấu trúc điều hướng hiện tại.
+Trang danh mục/nhóm con sản phẩm cũng bỏ khối intro theo yêu cầu 02/11/2026;
+giữ h1 ẩn theo đúng tên danh mục. Trang chi tiết giữ điều hướng hiện tại.
+02/11/2026: bổ sung điểm nhấn đỏ/vàng theo yêu cầu, nav xanh với mục đang chọn đỏ
+và gạch vàng, nút banner/hotline/gọi màu đỏ, nút liên hệ trong dải tư vấn màu vàng.
+Token bản mẫu: đỏ `#b51e25`, vàng `#ffdf45`, xanh `#09539a`; chưa phải bộ nhận diện cuối cùng.
+Theo phản hồi tiếp theo, thay xanh ngọc bằng xanh dương `#09539a` cho token accent
+(dải tư vấn, danh mục đang chọn, liên kết/icon); nền accent nhạt `#edf4fc`.
+Header bám trên khi cuộn (bao gồm menu và hotline); menu mobile có vùng cuộn riêng
+để vẫn thao tác được trên màn hình thấp. Giữ cỡ chữ/tương phản của đợt readability.
 Footer có bản đồ Google Maps: desktop đặt địa chỉ/nút chỉ đường bên trái, map bên phải;
 mobile xếp dọc. Dùng mã nhúng đúng địa điểm lấy từ trang liên hệ web cũ, lưu trong `data/location.json`.
 02/11/2026: người dùng chốt slider thay hero hai cột. Dùng đủ 5 banner nguồn, giữ tỷ lệ 1366×453,
@@ -117,7 +125,8 @@ Không có rung/nhấp nháy tự động; hover nhấc nhẹ và tắt chuyển
 `app/readability.css` được nạp sau stylesheet hiện có để áp dụng cho UI công khai.
 Chữ chính 16–17px, line-height 1.6–1.7; tên sản phẩm 18px desktop/16px mobile,
 menu desktop 17px, nhãn phụ tối thiểu 13px. Chữ phụ dùng `#334155`, màu nhấn
-`#075e65`, viền `#bbc9cd`. Các giá trị này là bản sửa chờ chủ shop duyệt.
+ban đầu `#075e65`, đã đổi sang xanh thương hiệu `#09539a` theo phản hồi tiếp theo;
+viền `#bbc9cd`. Các giá trị này là bản sửa chờ chủ shop duyệt.
 Trang chủ ưu tiên banner → nhóm hàng → sản phẩm → liên hệ, rồi giới thiệu/tin tức thu gọn.
 Mobile 360px dùng thẻ sản phẩm ngang một cột; gọi/Zalo thành thanh có nhãn ở đáy,
 tạm ẩn khi liên kết/nút nội dung có thể bị che. Desktop giữ hai nút nổi dạng tròn.
