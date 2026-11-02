@@ -62,6 +62,13 @@ Catalog local chưa sửa được từ /admin. Đọc [nguồn dữ liệu UI](
 
 ## Việc tiếp theo
 
+Đã tạo bản đồ Graphify ngày 02/11/2026 trong `graphify-out/`: quét 173 tệp,
+1.076 nút, 1.563 quan hệ và 62 nhóm. Mở `graph.html` để xem, đọc `GRAPH_REPORT.md`
+và `GRAPH_HEALTH.txt` để biết giới hạn. Không đọc `.env.local` hoặc truy vấn Supabase.
+Không còn endpoint thiếu; đồ thị vô hướng gộp 89 quan hệ cùng cặp nút và có 2 self-loop;
+`extraction.json` giữ dữ liệu trích xuất gốc. Token usage không được công cụ agent cung cấp.
+Đây là snapshot phục vụ tra cứu; dùng `$graphify . --update` sau thay đổi, không coi graph là yêu cầu sản phẩm.
+
 1. Nhận phản hồi bản UI và chốt phạm vi quản trị còn chờ trong product.md.
 2. Khi có admin web cũ, kiểm tra khả năng liệt kê/xuất nội dung và ảnh; đối chiếu snapshot public với toàn bộ sản phẩm/bài/danh mục, ngày đăng/metadata. Chưa giả định tài khoản admin cho phép xuất database. Xác minh thông tin liên hệ.
 3. Chốt schema sản phẩm/danh mục nhiều cấp/bản dịch và cách quản trị, rồi mới chuyển dữ liệu hàng loạt.
