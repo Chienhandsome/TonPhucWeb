@@ -5,11 +5,12 @@ import {useEffect, useRef, useState} from 'react';
 import {usePathname} from 'next/navigation';
 import {useTranslations} from 'next-intl';
 import siteInfo from '@/data/site-info.json';
+import {useSiteInfo} from './SiteInfoProvider';
 
 export default function FloatingContact() {
   const t = useTranslations('FloatingContact');
   const pathname = usePathname();
-  const {contact} = siteInfo;
+  const {contact} = useSiteInfo();
   const dockRef = useRef<HTMLElement>(null);
   const [overlapping, setOverlapping] = useState(false);
 

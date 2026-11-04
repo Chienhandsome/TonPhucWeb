@@ -17,18 +17,19 @@ type BannerSlide = {
   title: string;
   description: string;
   href: string;
+  buttonLabel?:string;
 };
 
-export default function HomeBanner({slides, heading}: {slides: BannerSlide[]; heading: string}) {
+export default function HomeBanner({slides, heading,delay=6000,autoplayEnabled=true}: {slides: BannerSlide[]; heading: string;delay?:number;autoplayEnabled?:boolean}) {
   const t = useTranslations('Banner');
   const [selected, setSelected] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
   const plugins = useMemo(() => [
-    Autoplay({delay: 6000, playOnInit: false, stopOnInteraction: true, stopOnFocusIn: true,
+    Autoplay({delay, playOnInit: false, stopOnInteraction: true, stopOnFocusIn: true,
       stopOnMouseEnter: true, rootNode: root => root.parentElement}),
     Fade({breakpoints: {'(max-width: 600px)': {active: false}}}),
-  ], []);
+  ], [delay]);
   const [viewportRef, api] = useEmblaCarousel({loop: true, duration: 25, watchFocus: false,
     breakpoints: {'(prefers-reduced-motion: reduce)': {duration: 0}}}, plugins);
 
@@ -52,18 +53,18 @@ export default function HomeBanner({slides, heading}: {slides: BannerSlide[]; he
     const onStop = () => setPlaying(false);
     const respectMotion = () => {
       setReducedMotion(preference.matches);
-      if (preference.matches) autoplay.stop();
+      if (preference.matches||!autoplayEnabled) autoplay.stop();
       else if (!document.hidden) autoplay.play();
     };
     const visibility = () => {
       if (document.hidden) autoplay.stop();
-      else if (!preference.matches) autoplay.play();
+      else if (!preference.matches&&autoplayEnabled) autoplay.play();
     };
     sync();
     respectMotion();
     api.on('select', sync).on('reInit', sync).on('settle', syncFocus);
     api.on('autoplay:play', onPlay).on('autoplay:stop', onStop);
-    if (!preference.matches && !document.hidden) autoplay.play();
+    if (!preference.matches && !document.hidden&&autoplayEnabled) autoplay.play();
     setPlaying(autoplay.isPlaying());
     preference.addEventListener('change', respectMotion);
     document.addEventListener('visibilitychange', visibility);
@@ -74,7 +75,7 @@ export default function HomeBanner({slides, heading}: {slides: BannerSlide[]; he
       document.removeEventListener('visibilitychange', visibility);
       autoplay.stop();
     };
-  }, [api]);
+  }, [api,autoplayEnabled]);
 
   const navigate = useCallback((destination: number) => {
     if (!api) return;
@@ -83,7 +84,7 @@ export default function HomeBanner({slides, heading}: {slides: BannerSlide[]; he
   }, [api, reducedMotion, slides.length]);
 
   const resume = (root: HTMLElement) => {
-    if (!reducedMotion && !document.hidden && !root.matches(':hover') && !root.contains(document.activeElement)) {
+    if (autoplayEnabled&&!reducedMotion && !document.hidden && !root.matches(':hover') && !root.contains(document.activeElement)) {
       api?.plugins().autoplay.play();
     }
   };
@@ -120,7 +121,7 @@ export default function HomeBanner({slides, heading}: {slides: BannerSlide[]; he
                 {slide.description && slide.description !== slide.title && <p>{slide.description}</p>}
               </div>
               <Link href={slide.href} className="banner-cta" tabIndex={index === selected ? 0 : -1}>
-                {t('view')}<ArrowUpRight size={17}/>
+                {slide.buttonLabel||t('view')}<ArrowUpRight size={17}/>
               </Link>
             </div>
           </div>)}

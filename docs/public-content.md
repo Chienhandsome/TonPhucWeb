@@ -23,6 +23,14 @@ Xem danh sách `failures` trong JSON. Thông tin địa chỉ/hotline lấy từ
 
 ## Luồng dữ liệu
 
+Cập nhật 03/11/2026: `getCatalog()` ghép sản phẩm/danh mục CMS đã xuất bản với snapshot;
+`getArticles()` ghép CMS, posts cũ và bài snapshot. Chưa nhập/chuyển đầy đủ dữ liệu cũ.
+Admin mới chỉ sửa được bản ghi CMS, không sửa trực tiếp JSON. URL snapshot có registry giữ chỗ,
+import để thay bản snapshot phải khai báo `legacy_path` rõ ràng. Thông tin công ty/trang tĩnh/banner
+đã có nguồn CMS khi cấu hình; lỗi DB không được che bằng JSON. Chi tiết [bàn giao CMS](admin-implementation.md).
+
+Các dòng dưới đây là luồng của đợt UI trước CMS (01–02/11), giữ để đối chiếu:
+
 - Danh mục và sản phẩm của bản UI đọc snapshot local; không đọc bảng `posts` như bảng sản phẩm.
 - Tin tức ghép bài đã xuất bản từ Supabase và bài nguồn local; trùng slug ưu tiên bài trong database.
 - Lỗi Supabase vẫn hiển thị lỗi tải; snapshot không phải cơ chế che lỗi database.

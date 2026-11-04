@@ -1,5 +1,24 @@
 # Kiến trúc hiện tại và khoảng trống
 
+## Cập nhật CMS — 03/11/2026
+
+Đã thêm `cms_records` (kind + cột trạng thái/slug/version + data JSONB), `cms_routes`,
+`cms_revisions`, `cms_audit`, `cms_media`; bảy migration cộng thêm, không thay/reset bảng cũ.
+`lib/cms/` và `components/admin/` thay admin một trang bằng các module dùng chung form/editor.
+Ghi qua RPC có kiểm tra user/role, validation, transaction, revision/audit và khóa chống ghi đè;
+client không được ghi trực tiếp bảng CMS. Cookie auth qua `@supabase/ssr`, middleware refresh session admin,
+preview kiểm tra server; RLS vẫn là quyền thực thi. Không có secret/service-role key trong client.
+Public đọc published/not-deleted qua repository, ghép với snapshot một cách rõ ràng;
+URL đã chuyển vào CMS không hồi sinh từ snapshot khi CMS bị ẩn/rác.
+Các trường JSONB tham chiếu có index; tính toàn vẹn do RPC kiểm tra, không có FK SQL bên trong JSONB.
+Root render theo request/no-store để dữ liệu CMS không bị giữ bởi cache build.
+`middleware.ts` vẫn theo Next.js 14; không đổi thành proxy.ts của Next 16.
+Chưa bật purge tự động sau 30 ngày; ảnh public vẫn truy cập được bằng URL kể cả thuộc bản nháp.
+Xem [bàn giao admin](admin-implementation.md) cho giới hạn, kiểm thử và bảng nghiệm thu.
+
+Các phần dưới đây ghi lại kiến trúc trước CMS để đối chiếu; các câu “chưa có CMS/server auth”
+được thay thế bởi cập nhật trên, không coi là trạng thái mới nhất.
+
 Cập nhật: 01/11/2026, sau đợt UI mới. Phân biệt dữ liệu public local với dữ liệu Supabase.
 
 ## Stack

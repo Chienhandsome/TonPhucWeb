@@ -16,6 +16,8 @@ Bắt đầu từ [AGENTS.md](AGENTS.md), rồi đọc:
 | --- | --- |
 | [Sản phẩm và quyết định](docs/product.md) | Mục tiêu, phạm vi đã chốt, câu hỏi còn mở, điều kiện hoàn thành |
 | [Kiến trúc](docs/architecture.md) | Code, routes, dữ liệu, auth/RLS và khoảng trống |
+| [Đặc tả admin](docs/admin-spec.md) / [Kế hoạch admin](docs/admin-plan.md) | Yêu cầu bản (2), thứ tự triển khai, dữ liệu/quyền và nghiệm thu |
+| [Bàn giao admin](docs/admin-implementation.md) | Code/migration thực tế, kiểm tra đã chạy, giới hạn và hướng dẫn sử dụng |
 | [Quy chuẩn UI](docs/design-system.md) | Hướng thị giác, token, mẫu trang, component, responsive và quy trình duyệt |
 | [SEO và AIO](docs/seo-aio.md) | Metadata, schema, sitemap/robots, noindex preview và cách mở index khi phát hành |
 | [Nội dung của bản UI](docs/public-content.md) | Nguồn JSON/ảnh công khai, phạm vi đã lấy, giới hạn và cách kiểm tra |

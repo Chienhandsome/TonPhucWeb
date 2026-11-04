@@ -5,10 +5,12 @@ import { useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ArrowUpRight, MapPin, Menu, Phone, Search, X } from 'lucide-react';
 import siteInfo from '@/data/site-info.json';
+import {useSiteInfo} from './SiteInfoProvider';
+import {safeUrl} from '@/lib/cms/validation';
 import location from '@/data/location.json';
-const { brand, contact } = siteInfo;
 
 export default function SiteHeader() {
+  const {brand,contact}=useSiteInfo();
   const t = useTranslations('Nav');
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -30,12 +32,14 @@ export default function SiteHeader() {
 }
 
 export function SiteFooter() {
+  const {brand,contact,footer,social}=useSiteInfo();
   const t = useTranslations('Footer');
   const n = useTranslations('Nav');
-  return <footer className="site-footer"><div className="container footer-grid">
-    <div className="footer-brand"><Link href="/" className="footer-wordmark">TÔN PHÚC<span>®</span></Link><a href={contact.zalo} target="_blank" rel="noreferrer" className="footer-zalo">Zalo<ArrowUpRight size={15} /></a></div>
-    <div><h3>{t('explore')}</h3><Link href="/gioi-thieu">{n('about')}</Link><Link href="/san-pham">{n('products')}</Link><Link href="/tin-tuc">{n('news')}</Link><Link href="/lien-he">{n('contact')}</Link></div>
+  return <footer className="site-footer" style={brand.footerColor?{backgroundColor:brand.footerColor}:undefined}><div className="container footer-grid">
+    <div className="footer-brand">{brand.footerLogo&&<img src={safeUrl(brand.footerLogo)} alt="Tôn Phúc" width={180} height={130}/>}<Link href="/" className="footer-wordmark">TÔN PHÚC<span>®</span></Link>{footer?.excerpt&&<p>{footer.excerpt}</p>}<a href={contact.zalo} target="_blank" rel="noreferrer" className="footer-zalo">Zalo<ArrowUpRight size={15} /></a>{social?.map((link:any)=><a key={link.url} href={safeUrl(link.url)} target="_blank" rel="noreferrer">{link.title}</a>)}</div>
+    {footer?.link_groups?footer.link_groups.map((group:any,index:number)=><div key={index}><h3>{group.title}</h3>{group.links?.map((link:any,i:number)=><a key={i} href={safeUrl(link.href)}>{link.label}</a>)}</div>):<>    <div><h3>{t('explore')}</h3><Link href="/gioi-thieu">{n('about')}</Link><Link href="/san-pham">{n('products')}</Link><Link href="/tin-tuc">{n('news')}</Link><Link href="/lien-he">{n('contact')}</Link></div>
     <div><h3>{t('products')}</h3><Link href="/gas-lanh">Gas lạnh</Link><Link href="/ong-dong-phu-kien-dong">Ống đồng & phụ kiện</Link><Link href="/block-cum-may-nen-dan-ngung">Block & máy nén</Link><Link href="/vat-tu-thiet-bi-kho-lanh-may-da-chiller">Vật tư kho lạnh</Link></div>
+</>}
     <div className="footer-contact"><h3>{t('contact')}</h3><p>{contact.address}</p><a href={`tel:${contact.phone}`} className="footer-phone">{contact.phoneDisplay}</a><a href={`mailto:${contact.email}`}>{contact.email}</a></div>
-  </div><section className="container footer-location" aria-labelledby="footer-map-heading"><div className="footer-location-copy"><span className="footer-location-icon"><MapPin size={24} strokeWidth={1.5} /></span><p className="eyebrow">{t('locationLabel')}</p><h3 id="footer-map-heading">{t('locationTitle')}</h3><p>{contact.address}</p><a href={location.directionsUrl} target="_blank" rel="noreferrer" className="footer-directions">{t('directions')}<ArrowUpRight size={16} /></a></div><div className="footer-map"><iframe src={location.embedUrl} title={t('mapTitle')} width="800" height="280" loading="lazy" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen /></div></section><div className="container footer-bottom"><span>{`© ${new Date().getFullYear()} ${t('copyright')}`}</span></div></footer>;
+  </div><section className="container footer-location" aria-labelledby="footer-map-heading"><div className="footer-location-copy"><span className="footer-location-icon"><MapPin size={24} strokeWidth={1.5} /></span><p className="eyebrow">{t('locationLabel')}</p><h3 id="footer-map-heading">{t('locationTitle')}</h3><p>{contact.address}</p><a href={location.directionsUrl} target="_blank" rel="noreferrer" className="footer-directions">{t('directions')}<ArrowUpRight size={16} /></a></div><div className="footer-map"><iframe src={location.embedUrl} title={t('mapTitle')} width="800" height="280" loading="lazy" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen /></div></section><div className="container footer-bottom"><span>{footer?.copyright||`© ${new Date().getFullYear()} ${t('copyright')}`}</span></div></footer>;
 }

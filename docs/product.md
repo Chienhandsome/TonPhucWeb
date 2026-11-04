@@ -50,11 +50,14 @@ Quy tắc triển khai dùng chung nằm trong [quy chuẩn UI](design-system.md
 - Admin dùng tiếng Việt ở giai đoạn đầu; dịch admin có thể làm sau.
 - Thư viện quản lý giao diện không thay thế việc lưu và kiểm duyệt bản dịch nội dung trong database.
 
-## Câu hỏi đang chờ
+## Phạm vi admin đã chốt — 03/11/2026
 
-1. Admin quản lý sản phẩm/danh mục/bài viết trước, hay cả banner và thông tin liên hệ?
-
-Cập nhật bảng quyết định sau khi có câu trả lời; không coi lựa chọn gợi ý của AI là câu trả lời của người dùng.
+Theo [đặc tả admin bản (2)](admin-spec.md), quản lý đầy đủ sản phẩm/danh mục/tags,
+bài viết, trang tĩnh, banner/ảnh hệ thống, thư viện ảnh, công ty/liên kết, SEO/redirect,
+tài khoản, thùng rác/phiên bản/nhật ký, nhập/xuất và sao lưu đầy đủ.
+Mục 18 đặc tả ưu tiên các câu cũ mâu thuẫn: nháp chỉ cần tiêu đề; cấp 2 sản phẩm không bắt buộc;
+giá thật tùy chọn và trạng thái kho có, số lượng tồn kho không có; ảnh mới trên Supabase Storage.
+Chuyển dữ liệu cũ là đợt riêng. [Kế hoạch triển khai](admin-plan.md) chưa phải phần đã hoàn thành.
 
 ## Điều kiện hoàn thành
 

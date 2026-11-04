@@ -8,6 +8,16 @@ Không cần service-role key hoặc database password trong ứng dụng.
 
 ## Database
 
+Cập nhật 03/11/2026: đã áp dụng bảy migration CMS cộng thêm trong `supabase/migrations/`,
+phiên bản local được đối chiếu với migration history remote. Giữ 4 categories/0 posts cũ và bucket `images`.
+Bảng CMS mới có RLS, read-only grants trực tiếp và RPC kiểm tra quyền admin để ghi.
+Policy Storage nay cho admin insert và chỉ delete sau khi ảnh được đánh dấu xóa/chưa có tham chiếu;
+không cho ghi đè file cũ qua upsert. Không chạy lại `schema.sql` vì sẽ ghi đè các policy mới.
+Ảnh bucket vẫn public; đây không phải cơ chế bảo mật ảnh nháp.
+Không bật pg_cron hoặc xóa tự động. Chi tiết [bàn giao](admin-implementation.md).
+
+Phần khởi tạo ban đầu (trước CMS):
+
 Schema hiện tại nằm trong `supabase/schema.sql`; đã áp dụng bằng migration
 `initialize_website_content_and_admin_policies` trên project này.
 

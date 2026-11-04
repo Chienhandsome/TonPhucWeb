@@ -7,8 +7,8 @@ export function blockText(blocks: ContentBlock[]): string {
   return blocks.filter(block => ['paragraph', 'heading', 'list'].includes(block.type)).map(block => block.text || '').join(' ');
 }
 
-export function businessData(): Record<string, unknown> {
-  const {contact, brand} = siteInfo;
+export function businessData(info: typeof siteInfo=siteInfo): Record<string, unknown> {
+  const {contact, brand} = info;
   return {'@context': 'https://schema.org', '@graph': [
     {'@type': 'LocalBusiness', '@id': absoluteUrl('/#business'), name: contact.name, url: SITE_URL,
       logo: imageUrl(brand.logo), image: imageUrl(brand.photo), telephone: '+84' + contact.phone.slice(1), email: contact.email,

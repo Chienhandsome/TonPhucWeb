@@ -1,9 +1,20 @@
-import type {Metadata} from 'next';
+import type { Metadata } from "next";
+import "./admin.css";
 
 export const metadata: Metadata = {
-  title: 'Đăng nhập quản trị',
-  alternates: {canonical:null},
-  robots: {index:false,follow:false,googleBot:{index:false,follow:false}},
+  title: "Đăng nhập quản trị",
+  alternates: { canonical: null },
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: { index: false, follow: false },
+  },
 };
 
-export default function AdminLayout({children}:{children:React.ReactNode}) {return <>{children}</>;}
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <>{children}</>;
+}

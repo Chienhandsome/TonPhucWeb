@@ -1,5 +1,5 @@
 import {serializeJsonLd} from '@/lib/json-ld.mjs';
 
-export default function JsonLd({data}: {data: Record<string, unknown>}) {
+export default function JsonLd({data}: {data: Record<string, unknown> | Record<string, unknown>[]}) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{__html: serializeJsonLd(data)}}/>;
 }

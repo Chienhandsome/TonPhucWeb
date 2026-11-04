@@ -11,7 +11,7 @@ export function getSupabase(): SupabaseClient | null {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   if (!url || !key || url.includes("your-project")) return null;
-  if (!cached) cached = createClient(url, key);
+  if (!cached) cached = createClient(url, key,{global:{fetch:(input,options)=>fetch(input,{...options,cache:'no-store'})}});
   return cached;
 }
 

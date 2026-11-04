@@ -4,6 +4,15 @@ Cập nhật: 01/11/2026. Trạng thái tại thời điểm bàn giao, không p
 
 ## Đã hoàn thành
 
+03/11/2026: đã triển khai bản admin CMS local và bảy migration cộng thêm trên TonPhucWeb,
+giữ 4 chuyên mục cũ/0 bài/0 ảnh, không nhập dữ liệu web cũ. Có các module quản trị, RPC/RLS,
+nháp/rác/revision, thư viện ảnh, CSV/JSON/ZIP, preview, SEO/redirect và tích hợp bản ghi CMS mới vào public.
+TypeScript/build, 13 Node tests, 64 route public, 19 route admin và 10 SEO checks đã đạt trong đợt này;
+SQL giao dịch/quyền/restore đã kiểm tra và rollback fixture. Browser/session/email/upload/ZIP thực còn chờ.
+Không đánh dấu nghiệm thu trọn vẹn. Lịch xóa tự động 30 ngày bị automatic approval review từ chối, chưa bật.
+Chi tiết [bàn giao admin](admin-implementation.md), [SQL pending](operations/cms-retention-pending.sql).
+Chưa commit/push/deploy/DNS; server local mới ở cổng 3000.
+
 - Bản UI mới: header/footer responsive, trang chủ, catalog và danh mục con,
   chi tiết sản phẩm, tin tức/bài, giới thiệu, liên hệ, trang 404/lỗi tải.
 - Tìm tên sản phẩm có/không dấu, phân trang catalog, trạng thái không có kết quả.
@@ -103,6 +112,11 @@ Animation hero/scroll reveal mới ở mức đề xuất trong design-system.md
 Catalog local chưa sửa được từ /admin. Đọc [nguồn dữ liệu UI](public-content.md) trước khi tiếp tục.
 
 ## Việc tiếp theo
+
+03/11/2026: đã lưu [đặc tả admin bản (2)](admin-spec.md) và lập
+[kế hoạch triển khai admin](admin-plan.md) gồm Mốc 0–8, tách chuyển dữ liệu/phát hành.
+Đã đối chiếu code/schema local và đồ thị Graphify; chưa kiểm tra remote, chưa đổi schema/code admin,
+chưa import/deploy. Bước đầu là inventory chỉ đọc và thiết kế mô hình dữ liệu.
 
 02/11/2026: banner bỏ hai nút mũi tên và nút tự chuyển theo yêu cầu mới;
 giữ chấm chọn ở giữa và mặc định autoplay 6 giây, tạm dừng khi hover/focus,

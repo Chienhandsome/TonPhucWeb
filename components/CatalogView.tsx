@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import {ArrowLeft, ArrowRight, Search, SlidersHorizontal} from 'lucide-react';
 import {getTranslations} from 'next-intl/server';
-import {categories, findCategory, productsInCategory} from '@/lib/catalog';
+import {getCatalog} from '@/lib/catalog';
 import ProductCard from '@/components/ProductCard';
 import PageIntro from '@/components/PageIntro';
 import JsonLd from '@/components/JsonLd';
@@ -9,6 +9,7 @@ import {breadcrumbData} from '@/lib/structured-data';
 
 export default async function CatalogView({categorySlug, searchParams = {}, showIntro = false}: {categorySlug?: string; searchParams?: {q?: string; page?: string}; showIntro?: boolean}) {
   const t = await getTranslations('Catalog');
+  const {categories,findCategory,productsInCategory}=await getCatalog();
   const category = categorySlug ? findCategory(categorySlug) : null;
   const query = (typeof searchParams.q === 'string' ? searchParams.q : '').trim();
   const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').toLowerCase();
